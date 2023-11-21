@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="915.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginPageController">
     <children>
-        <AnchorPane id="leftAnchorPane" prefHeight="503.0" prefWidth="515.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane id="leftAnchorPane" prefHeight="503.0" prefWidth="497.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="166.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
                 </ImageView>
@@ -24,14 +24,14 @@
                         <Insets />
                     </opaqueInsets>
                 </Label>
-                <Label alignment="CENTER" layoutX="155.0" layoutY="264.0" prefHeight="62.0" prefWidth="205.0" text="Created by: XXX" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+                <Label alignment="CENTER" layoutX="155.0" layoutY="264.0" prefHeight="62.0" prefWidth="205.0" text="O_O" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
                     <font>
                         <Font name="Segoe UI" size="12.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <Pane layoutX="589.0" layoutY="100.0" prefHeight="270.0" prefWidth="289.0" AnchorPane.bottomAnchor="133.0" AnchorPane.topAnchor="100.0">
+        <Pane layoutX="569.0" layoutY="100.0" prefHeight="270.0" prefWidth="286.0" AnchorPane.bottomAnchor="133.0" AnchorPane.topAnchor="100.0">
             <children>
                 <TextField fx:id="txtUsername" layoutX="2.0" layoutY="-3.0" prefHeight="34.0" prefWidth="280.0" promptText="username" />
                 <PasswordField fx:id="txtPassword" layoutX="2.0" layoutY="61.0" prefHeight="34.0" prefWidth="280.0" promptText="password" />
