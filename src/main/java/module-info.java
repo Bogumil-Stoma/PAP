@@ -1,5 +1,6 @@
 module org.openjfx {
 	requires transitive javafx.graphics;
 	requires javafx.controls;
-	exports org.openjfx;
+    requires javafx.fxml;
+    exports org.openjfx;
 }
