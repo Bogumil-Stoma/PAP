@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="915.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginPageController">
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="915.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginPageController">
     <children>
         <AnchorPane id="leftAnchorPane" prefHeight="503.0" prefWidth="497.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -58,5 +58,4 @@
             </children>
         </Pane>
     </children>
-
 </AnchorPane>
