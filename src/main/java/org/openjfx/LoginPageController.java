@@ -3,6 +3,8 @@ package org.openjfx;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
+import java.io.IOException;
+
 public class LoginPageController {
     public RadioButton clientRadioBtn;
     public RadioButton employeeRadioBtn;
@@ -32,8 +34,10 @@ public class LoginPageController {
         this.printTestInfo();
     }
 
-    public void onSignUpClick(ActionEvent actionEvent) {
+    public void onSignUpClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Hey, I'm signing up here!");
         this.printTestInfo();
+
+        SceneController.switchScenes(actionEvent, "register");
     }
 }
