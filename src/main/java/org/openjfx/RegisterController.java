@@ -1,42 +1,36 @@
 package org.openjfx;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 
-import java.io.IOException;
-
 public class RegisterController {
+    // TODO: connect attributes to FXML (register.fxml)
     @FXML
-    private TextField firstNameTF;
+    private TextField firstName;
     @FXML
-    private TextField lastNameTF;
+    private TextField lastName;
     @FXML
-    private TextField loginTF;
+    private TextField login;
     @FXML
-    private TextField passwordTF;
+    private TextField password;
     @FXML
-    private TextField emailTF;
+    private TextField email;
     @FXML
-    private TextField streetTF;
+    private TextField street;
     @FXML
-    private TextField houseTF;
+    private TextField house;
     @FXML
-    private TextField countryTF;
+    private TextField country;
     @FXML
-    private TextField postalCodeTF;
+    private TextField postalCode;
     @FXML
-    private TextField cityTF;
+    private TextField city;
 
     @FXML
     private Button addClientBtn;
     @FXML
     private Button returnBtn;
-
-    public void handleButtonAction(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
-    }
 }
 

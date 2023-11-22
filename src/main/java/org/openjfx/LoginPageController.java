@@ -1,19 +1,29 @@
 package org.openjfx;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 
 public class LoginPageController {
-    public RadioButton clientRadioBtn;
-    public RadioButton employeeRadioBtn;
-    public Label lblErrors;
-    public ToggleGroup userType;
-    public Button btnSignUp;
-    public PasswordField txtPassword;
-    public TextField txtUsername;
-    public Button btnSignIn;
+    @FXML
+    private RadioButton clientRadioBtn;
+    @FXML
+    private RadioButton employeeRadioBtn;
+    @FXML
+    private Label labelErrors;
+    @FXML
+    private ToggleGroup userType;
+    // TODO: How to use ToggleGroup in code
+    @FXML
+    private Button btnSignUp;
+    @FXML
+    private PasswordField txtPassword;
+    @FXML
+    private TextField txtUsername;
+    @FXML
+    private Button btnSignIn;
 
     private void printTestInfo() {
         System.out.println("Current login: " + txtUsername.getText());
@@ -29,12 +39,14 @@ public class LoginPageController {
         System.out.println();
     }
 
-    public void onSingInClick(ActionEvent actionEvent) {
+    @FXML
+    private void onSingInClick(ActionEvent actionEvent) {
         System.out.println("Hey, I'm signing in here!");
         this.printTestInfo();
     }
 
-    public void onSignUpClick(ActionEvent actionEvent) throws IOException {
+    @FXML
+    private void onSignUpClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Hey, I'm signing up here!");
         this.printTestInfo();
 
