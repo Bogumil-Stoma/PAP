@@ -1,5 +1,9 @@
 package org.openjfx.database;
 
-public record Wish(User user, Book book) {
+public class Wish {
 
+	public Wish(User user, Book book)
+	{
+
+	}
 }

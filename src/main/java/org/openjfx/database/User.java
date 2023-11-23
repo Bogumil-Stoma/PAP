@@ -1,5 +1,13 @@
 package org.openjfx.database;
 
-public record User(String login, String password) {
+public class User {
 
+	private String login;
+
+	public User(String login, String password)
+	{
+		this.login = login;
+	}
+
+	public String getLogin() { return login; }
 }
