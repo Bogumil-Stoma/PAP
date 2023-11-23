@@ -1,9 +1,8 @@
-package org.openjfx;
+package org.openjfx.database;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openjfx.database.Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
