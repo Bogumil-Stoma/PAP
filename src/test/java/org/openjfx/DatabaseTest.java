@@ -3,6 +3,7 @@ package org.openjfx;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openjfx.database.Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +13,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class DatabaseTest {
-
 	private Database database;
 
 	@Before
 	public void setup() {
-		database = new Database();
+		database = Database.getInstance();
 
 		int status = database.executeUpdate("CREATE TABLE test_table (id INT PRIMARY KEY, name VARCHAR(255))");
 		assertEquals(0, status);
@@ -58,5 +58,20 @@ public class DatabaseTest {
 
 		int deleted = database.executeUpdate("DELETE FROM test_table WHERE name LIKE 'Test%'");
 		assertEquals(2, deleted);
+	}
+
+	/*
+	 * If this fails, you've seriously fucked up. Run DatabaseInitializer.
+	 */
+	@Test
+	public void testTables() {
+		Boolean status = database.tableExists("USER");
+		assertEquals(true, status);
+
+		status = database.tableExists("BOOK");
+		assertEquals(true, status);
+
+		status = database.tableExists("WISH");
+		assertEquals(true, status);
 	}
 }
