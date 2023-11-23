@@ -17,3 +17,5 @@ buildNumber.properties
 .classpath
 
 .idea
+
+database/*.trace.db
