@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+import org.openjfx.requests.TryCreateUser;
+
 
 public class RegisterController {
 	@FXML
@@ -33,6 +35,12 @@ public class RegisterController {
 	@FXML
 	private void onRegisterClick(ActionEvent actionEvent) {
 		this.signaliseIfNoInput();
+
+		var user = TryCreateUser.Execute(txtLogin.getText(), txtPassword.getText());
+		if (user != null)
+			System.out.println(user.getLogin());
+		else
+			System.out.println("Login is already taken");
 
 		System.out.println("Registration: " + txtLogin.getText());
 		System.out.println("Login : " + txtPassword.getText());

@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
+import org.openjfx.requests.GetUser;
+
 public class LoginPageController {
 	@FXML
 	private RadioButton clientRadioBtn;
@@ -54,6 +56,12 @@ public class LoginPageController {
 
 		System.out.println("Hey, I'm signing in here!");
 		this.printTestInfo();
+
+		var user = GetUser.Request(txtLogin.getText(), txtPassword.getText());
+		if (user != null)
+			System.out.println(user.getLogin());
+		else
+			System.out.println("Inncorrect login or passsword");
 
 		if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
 			if (employeeRadioBtn.isSelected()) {
