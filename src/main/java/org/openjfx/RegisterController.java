@@ -1,36 +1,46 @@
 package org.openjfx;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 
 public class RegisterController {
-	// TODO: connect attributes to FXML (register.fxml)
 	@FXML
-	private TextField firstName;
+	private Label labelErrors;
 	@FXML
-	private TextField lastName;
+	private Button btnCancel;
 	@FXML
-	private TextField login;
+	private Button btnRegister;
 	@FXML
-	private TextField password;
+	private TextField txtLogin;
 	@FXML
-	private TextField email;
-	@FXML
-	private TextField street;
-	@FXML
-	private TextField house;
-	@FXML
-	private TextField country;
-	@FXML
-	private TextField postalCode;
-	@FXML
-	private TextField city;
+	private TextField txtPassword;
+
+	private void signalIfNoInput() {
+		if (txtLogin.getText().isEmpty()) {
+			labelErrors.setText("You need to pass a login");
+		}
+		else if (txtPassword.getText().isEmpty()) {
+			labelErrors.setText("You need to pass a password");
+		}
+	}
 
 	@FXML
-	private Button addClientBtn;
+	private void onRegisterClick(ActionEvent actionEvent) {
+		this.signalIfNoInput();
+
+		System.out.println("Registration: " + txtLogin.getText());
+		System.out.println("Login : " + txtPassword.getText());
+		System.out.println();
+	}
+
 	@FXML
-	private Button returnBtn;
+	private void onCancelClick(ActionEvent actionEvent) throws IOException {
+		SceneController.switchScenes(actionEvent, "login", "css/login.css");
+	}
 }
-

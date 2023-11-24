@@ -21,12 +21,21 @@ public class LoginPageController {
 	@FXML
 	private PasswordField txtPassword;
 	@FXML
-	private TextField txtUsername;
+	private TextField txtLogin;
 	@FXML
 	private Button btnSignIn;
 
+	private void signalIfNoInput() {
+		if (txtLogin.getText().isEmpty()) {
+			labelErrors.setText("No login");
+		}
+		else if (txtPassword.getText().isEmpty()) {
+			labelErrors.setText("No password");
+		}
+	}
+
 	private void printTestInfo() {
-		System.out.println("Current login: " + txtUsername.getText());
+		System.out.println("Current login: " + txtLogin.getText());
 		System.out.println("Current password: " + txtPassword.getText());
 
 		if (clientRadioBtn.isSelected()) {
@@ -41,6 +50,8 @@ public class LoginPageController {
 
 	@FXML
 	private void onSingInClick(ActionEvent actionEvent) {
+		this.signalIfNoInput();
+
 		System.out.println("Hey, I'm signing in here!");
 		this.printTestInfo();
 	}
@@ -50,6 +61,6 @@ public class LoginPageController {
 		System.out.println("Hey, I'm signing up here!");
 		this.printTestInfo();
 
-		SceneController.switchScenes(actionEvent, "register");
+		SceneController.switchScenes(actionEvent, "register", "css/register.css");
 	}
 }
