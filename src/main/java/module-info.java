@@ -5,4 +5,6 @@ module org.openjfx {
 	requires java.sql;
 	opens org.openjfx;
 	exports org.openjfx;
+	exports org.openjfx.controller;
+	opens org.openjfx.controller;
 }

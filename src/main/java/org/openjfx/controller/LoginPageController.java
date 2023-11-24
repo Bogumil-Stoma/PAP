@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ public class LoginPageController {
 	@FXML
 	private Button btnSignIn;
 
-	private void signalIfNoInput() {
+	private void signaliseIfNoInput() {
 		if (txtLogin.getText().isEmpty()) {
 			labelErrors.setText("No login");
 		}
@@ -50,7 +50,7 @@ public class LoginPageController {
 
 	@FXML
 	private void onSingInClick(ActionEvent actionEvent) {
-		this.signalIfNoInput();
+		this.signaliseIfNoInput();
 
 		System.out.println("Hey, I'm signing in here!");
 		this.printTestInfo();

@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ public class RegisterController {
 	@FXML
 	private TextField txtPassword;
 
-	private void signalIfNoInput() {
+	private void signaliseIfNoInput() {
 		if (txtLogin.getText().isEmpty()) {
 			labelErrors.setText("You need to pass a login");
 		}
@@ -32,7 +32,7 @@ public class RegisterController {
 
 	@FXML
 	private void onRegisterClick(ActionEvent actionEvent) {
-		this.signalIfNoInput();
+		this.signaliseIfNoInput();
 
 		System.out.println("Registration: " + txtLogin.getText());
 		System.out.println("Login : " + txtPassword.getText());
