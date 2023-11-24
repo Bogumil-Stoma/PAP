@@ -49,11 +49,18 @@ public class LoginPageController {
 	}
 
 	@FXML
-	private void onSingInClick(ActionEvent actionEvent) {
+	private void onSingInClick(ActionEvent actionEvent) throws IOException {
 		this.signaliseIfNoInput();
 
 		System.out.println("Hey, I'm signing in here!");
 		this.printTestInfo();
+
+		if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
+			if (employeeRadioBtn.isSelected()) {
+				System.out.println("You will be logged in as admin");
+				SceneController.switchScenes(actionEvent, "admin_view");
+			}
+		}
 	}
 
 	@FXML
