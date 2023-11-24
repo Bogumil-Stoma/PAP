@@ -11,7 +11,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="915.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginPageController">
     <children>
@@ -25,28 +24,19 @@
                     </opaqueInsets>
                 </Label>
                 <Label alignment="CENTER" layoutX="155.0" layoutY="264.0" prefHeight="62.0" prefWidth="205.0" text="O_O" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
-                    <font>
-                        <Font name="Segoe UI" size="12.0" />
-                    </font>
                 </Label>
             </children>
         </AnchorPane>
         <Pane layoutX="569.0" layoutY="100.0" prefHeight="270.0" prefWidth="286.0" AnchorPane.bottomAnchor="133.0" AnchorPane.topAnchor="100.0">
             <children>
-                <TextField fx:id="txtUsername" layoutX="2.0" layoutY="-3.0" prefHeight="34.0" prefWidth="280.0" promptText="username" />
+                <TextField fx:id="txtLogin" layoutX="2.0" layoutY="-3.0" prefHeight="34.0" prefWidth="280.0" promptText="username" />
                 <PasswordField fx:id="txtPassword" layoutX="2.0" layoutY="61.0" prefHeight="34.0" prefWidth="280.0" promptText="password" />
-                <Button fx:id="btnSignIn" layoutX="2.0" layoutY="156.0" mnemonicParsing="false" onAction="#onSingInClick" prefHeight="34.0" prefWidth="280.0" text="Sign in" />
-                <Button fx:id="btnSignUp" layoutX="2.0" layoutY="222.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="34.0" prefWidth="280.0" text="Sign up" />
+                <Button fx:id="btnSignIn" layoutX="2.0" layoutY="156.0" mnemonicParsing="false" onAction="#onSingInClick" prefHeight="34.0" prefWidth="280.0" style="-fx-background-radius: 20px;" text="Sign in" />
+                <Button fx:id="btnSignUp" layoutX="2.0" layoutY="222.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="34.0" prefWidth="280.0" style="-fx-background-radius: 20px;" text="Sign up" />
                 <Separator layoutX="8.0" layoutY="202.0" prefHeight="7.0" prefWidth="275.0" />
                 <Label alignment="CENTER" layoutX="131.0" layoutY="194.0" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: #fff;" text="Or" textFill="#5b5a5a">
-                    <font>
-                        <Font name="Segoe UI" size="12.0" />
-                    </font>
                 </Label>
                 <Label fx:id="labelErrors" alignment="CENTER" layoutX="3.0" layoutY="95.0" prefHeight="23.0" prefWidth="280.0" textFill="#ff6354">
-                    <font>
-                        <Font name="Segoe UI" size="10.0" />
-                    </font>
                 </Label>
 
                 <RadioButton fx:id="clientRadioBtn" layoutY="113.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="140.0" selected="true" text="Client" textAlignment="CENTER">
