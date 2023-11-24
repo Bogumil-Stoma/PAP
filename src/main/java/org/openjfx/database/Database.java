@@ -93,7 +93,7 @@ public class Database {
 	public ResultSet executeQuery(String sql) {
 		try {
 			return connection.prepareStatement(sql).executeQuery();
-		} catch (SQLException e) {
+		} catch(SQLException e) {
 			new Exception(e);
 			return null;
 		}
@@ -111,7 +111,7 @@ public class Database {
 			int result = connection.prepareStatement(sql).executeUpdate();
 			connection.commit();
 			return result;
-		} catch (SQLException e) {
+		} catch(SQLException e) {
 			new Exception(e);
 			return -1;
 		}
@@ -135,10 +135,10 @@ public class Database {
 	 */
 	public void close() {
 		try {
-			if (connection != null && !connection.isClosed()) {
+			if(connection != null && !connection.isClosed()) {
 				connection.close();
 			}
-		} catch (SQLException e) {
+		} catch(SQLException e) {
 			new Exception(e);
 		}
 	}
