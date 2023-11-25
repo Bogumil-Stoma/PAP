@@ -4,3 +4,7 @@
     -fx-background-size: cover;
     -fx-min-height: 100%;
 }
+
+.btn-radius {
+    -fx-background-radius: 20px;
+}
