@@ -15,13 +15,13 @@ public class RegisterController {
 	@FXML
 	private Label labelErrors;
 	@FXML
-	private Button btnCancel;
-	@FXML
-	private Button btnRegister;
-	@FXML
 	private TextField txtLogin;
 	@FXML
 	private TextField txtPassword;
+	@FXML
+	private Button btnCancel;
+	@FXML
+	private Button btnRegister;
 
 	private void signaliseIfNoInput() {
 		if (txtLogin.getText().isEmpty()) {
@@ -33,7 +33,7 @@ public class RegisterController {
 	}
 
 	@FXML
-	private void onRegisterClick(ActionEvent actionEvent) {
+	private void onRegisterClick(ActionEvent event) {
 		this.signaliseIfNoInput();
 
 		var user = TryCreateUser.Execute(txtLogin.getText(), txtPassword.getText());
@@ -48,7 +48,7 @@ public class RegisterController {
 	}
 
 	@FXML
-	private void onCancelClick(ActionEvent actionEvent) throws IOException {
-		SceneController.switchScenes(actionEvent, "login", "css/login.css");
+	private void onCancelClick(ActionEvent event) throws IOException {
+		SceneController.switchScenes(event, "login", "css/login.css");
 	}
 }

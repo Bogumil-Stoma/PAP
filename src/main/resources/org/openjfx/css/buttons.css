@@ -1,8 +1,11 @@
-#btnRegister {
+.btn {
     -fx-background-color: #2563eb;
-    -fx-background-radius: 20px;
 }
 
-#btnRegister:hover {
+.btn:hover {
     -fx-background-color: #3b82f6;
+}
+
+.btn-radius {
+    -fx-background-radius: 20px;
 }

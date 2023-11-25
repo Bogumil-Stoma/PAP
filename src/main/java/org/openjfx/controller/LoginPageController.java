@@ -19,13 +19,13 @@ public class LoginPageController {
 	private ToggleGroup userType;
 	// TODO: How to use ToggleGroup in code
 	@FXML
-	private Button btnSignUp;
-	@FXML
 	private PasswordField txtPassword;
 	@FXML
 	private TextField txtLogin;
 	@FXML
 	private Button btnSignIn;
+	@FXML
+	private Button btnSignUp;
 
 	private void signaliseIfNoInput() {
 		if (txtLogin.getText().isEmpty()) {
@@ -51,7 +51,7 @@ public class LoginPageController {
 	}
 
 	@FXML
-	private void onSingInClick(ActionEvent actionEvent) throws IOException {
+	private void onSingInClick(ActionEvent event) throws IOException {
 		this.signaliseIfNoInput();
 
 		System.out.println("Hey, I'm signing in here!");
@@ -61,21 +61,21 @@ public class LoginPageController {
 		if (user != null)
 			System.out.println(user.getLogin());
 		else
-			System.out.println("Inncorrect login or passsword");
+			System.out.println("Incorrect login or password");
 
 		if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
 			if (employeeRadioBtn.isSelected()) {
 				System.out.println("You will be logged in as admin");
-				SceneController.switchScenes(actionEvent, "admin_view");
+				SceneController.switchScenes(event, "admin_view", "css/buttons.css");
 			}
 		}
 	}
 
 	@FXML
-	private void onSignUpClick(ActionEvent actionEvent) throws IOException {
+	private void onSignUpClick(ActionEvent event) throws IOException {
 		System.out.println("Hey, I'm signing up here!");
 		this.printTestInfo();
 
-		SceneController.switchScenes(actionEvent, "register", "css/register.css");
+		SceneController.switchScenes(event, "register", "css/buttons.css");
 	}
 }
