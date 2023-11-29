@@ -6,8 +6,14 @@ package org.openjfx.database;
  */
 public class Book {
 
+	private String title, author, category;
+	private int rating;
 	public Book(String title, String author, String category, int rating)
 	{
-
+		this.title = title;
+		this.author = author;
+		this.category = category;
+		this.rating = rating;
 	}
+
 }
