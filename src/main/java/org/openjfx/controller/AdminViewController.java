@@ -20,40 +20,37 @@ import org.openjfx.database.Book;
 public class AdminViewController implements Initializable {
 	@FXML
 	private TableView<Book> tableBooks;
-
+	@FXML
+	private TableColumn<Book, Integer> bookId;
 	@FXML
 	private TableColumn<Book, String> title;
-
 	@FXML
 	private TableColumn<Book, String> author;
-
 	@FXML
 	private TableColumn<Book, String> category;
-
 	@FXML
 	private TableColumn<Book, Integer> rating;
-
 	@FXML
 	private TableColumn<?, ?> ifAvailable;
-
 	@FXML
 	private TableColumn<?, ?> ifLoanable;
-
 	@FXML
 	private TableColumn<?, ?> price;
-
 	@FXML
 	private Button btnAddBook;
-
 	@FXML
 	private Button btnLogOut;
-
 	@FXML
 	private Button btnRefresh;
+//	There will be buttons for 'Delete' and 'Modify'
+	@FXML
+	private TableColumn<Book, Void> removeRow;
+	@FXML
+	private TableColumn<Book, Void> modifyRow;
 
 	@FXML
-	void onAddNewBookClick(ActionEvent event) {
-		System.out.println("New book scene should be loaded");
+	void onAddNewBookClick(ActionEvent event) throws IOException {
+		SceneController.switchScenes(event, "add_new_book", "css/buttons.css");
 	}
 
 	@FXML
@@ -69,8 +66,8 @@ public class AdminViewController implements Initializable {
 //	TODO: uncomment it when there will be class Book implemented with getters, then add some attributes to controller
 
 //	ObservableList<Book> testList = FXCollections.observableArrayList(
-//			new Book("Jo", "Mama", "Fantasy", 42),
-//			new Book("Harry", "Potter", "Fantasy", 71)
+//			new Book("Jo", "Mama", "Fantasy", 1),
+//			new Book("Harry", "Potter", "Fantasy", 4)
 //	);
 
 	@Override
