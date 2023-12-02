@@ -40,7 +40,7 @@
                 </TextField>
                 <Button fx:id="btnRegister" focusTraversable="false" layoutX="109.0" layoutY="172.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="52.0" prefWidth="150.0" text="Register" textFill="WHITE">
                     <font>
-                        <Font size="19.0" />
+                        <Font size="18.0" />
                     </font>
                <styleClass>
                   <String fx:value="btn" />
@@ -52,10 +52,10 @@
                 </Button>
                 <Button fx:id="btnCancel" focusTraversable="false" layoutX="273.0" layoutY="172.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="52.0" prefWidth="150.0" styleClass="btn-radius" text="Cancel" textFill="#555555">
                     <font>
-                        <Font size="19.0" />
+                        <Font size="18.0" />
                     </font>
                <cursor>
-                  <Cursor fx:constant="MOVE" />
+                  <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
                 <Label fx:id="labelErrors" alignment="CENTER" layoutX="9.0" layoutY="130.0" prefHeight="17.0" prefWidth="500.0" textFill="#ff6354" />
