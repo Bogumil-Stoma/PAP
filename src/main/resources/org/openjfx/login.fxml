@@ -19,12 +19,12 @@
             <children>
                 <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="166.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
                 </ImageView>
-                <Label alignment="CENTER" layoutX="155.0" layoutY="212.0" prefHeight="23.0" prefWidth="205.0" style="-fx-font-weight: 900; -fx-font-size: 26; -fx-font-style: italic;" text="Giga projekt" textFill="WHITE">
+                <Label alignment="CENTER" layoutX="166.0" layoutY="59.0" prefHeight="23.0" prefWidth="205.0" style="-fx-font-weight: 900; -fx-font-size: 30; -fx-font-style: italic;" text="Giga projekt">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
                 </Label>
-                <Label alignment="CENTER" layoutX="155.0" layoutY="264.0" prefHeight="62.0" prefWidth="205.0" text="O_O" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+                <Label alignment="CENTER" layoutX="166.0" layoutY="96.0" prefHeight="62.0" prefWidth="205.0" text="O_O" textAlignment="JUSTIFY" wrapText="true">
                 </Label>
             </children>
         </AnchorPane>
