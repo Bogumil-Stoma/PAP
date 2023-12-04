@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import org.openjfx.requests.AddBook;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +51,13 @@ public class AddBookController implements Initializable {
 		System.out.println("IfAvailable: " + ifAvailableChoiceBox.getValue());
 		System.out.println("IfLoanable: " + ifLoanableChoiceBox.getValue());
 		System.out.println();
+
+		var book = AddBook.Request(txtTitle.getText(), txtAuthor.getText(), txtCategory.getText(), ratingChoiceBox.getValue());
+
+		if (book != null)
+			System.out.println(book.getTitle());
+		else
+			System.out.println("Some error might have had place");
 	}
 
 	@Override
