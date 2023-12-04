@@ -16,9 +16,6 @@ public class LoginPageController {
 	@FXML
 	private Label labelErrors;
 	@FXML
-	private ToggleGroup userType;
-	// TODO: How to use ToggleGroup in code
-	@FXML
 	private PasswordField txtPassword;
 	@FXML
 	private TextField txtLogin;
@@ -26,6 +23,8 @@ public class LoginPageController {
 	private Button btnSignIn;
 	@FXML
 	private Button btnSignUp;
+	@FXML
+	private ToggleGroup userType;
 
 	private void signaliseIfNoInput() {
 		if (txtLogin.getText().isEmpty()) {
