@@ -8,8 +8,26 @@ public class Book {
 
 	private String title, author, category;
 	private int rating;
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
 	public Book(String title, String author, String category, int rating)
 	{
+		//TODO add fields when database gets updated (myb getters and setters)
 		this.title = title;
 		this.author = author;
 		this.category = category;
