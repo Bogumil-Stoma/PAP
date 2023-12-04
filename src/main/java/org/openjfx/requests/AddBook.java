@@ -1,8 +1,5 @@
 package org.openjfx.requests;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.openjfx.database.Book;
 
 public class AddBook extends Request{
