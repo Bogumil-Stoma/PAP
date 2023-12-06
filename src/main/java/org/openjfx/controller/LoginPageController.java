@@ -10,10 +10,6 @@ import org.openjfx.requests.GetUser;
 
 public class LoginPageController {
 	@FXML
-	private RadioButton clientRadioBtn;
-	@FXML
-	private RadioButton employeeRadioBtn;
-	@FXML
 	private Label labelErrors;
 	@FXML
 	private PasswordField txtPassword;
@@ -38,14 +34,6 @@ public class LoginPageController {
 	private void printTestInfo() {
 		System.out.println("Current login: " + txtLogin.getText());
 		System.out.println("Current password: " + txtPassword.getText());
-
-		if (clientRadioBtn.isSelected()) {
-			System.out.println("Signing in as CLIENT");
-		}
-
-		if (employeeRadioBtn.isSelected()) {
-			System.out.println("Signing in as EMPLOYEE");
-		}
 		System.out.println();
 	}
 
@@ -57,16 +45,16 @@ public class LoginPageController {
 		this.printTestInfo();
 
 		var user = GetUser.Request(txtLogin.getText(), txtPassword.getText());
-		if (user != null)
-			System.out.println(user.getLogin());
-		else
+		if (user == null) {
 			System.out.println("Incorrect login or password");
+			return;
+		}
 
-		if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
-			if (employeeRadioBtn.isSelected()) {
-				System.out.println("You will be logged in as admin");
-				SceneController.switchScenes(event, "admin_view", "css/buttons.css");
-			}
+		System.out.println(user.getLogin());
+
+		if (user.getAdmin()) {
+			System.out.println("You will be logged in as admin");
+			SceneController.switchScenes(event, "admin_view", "css/buttons.css");
 		}
 	}
 

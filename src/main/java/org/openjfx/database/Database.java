@@ -50,22 +50,25 @@ public class Database {
 
 		executeUpdate("CREATE TABLE \"USER\" (" +
 					  "user_id INT AUTO_INCREMENT PRIMARY KEY," +
-					  "login VARCHAR(255)," +
-					  "password VARCHAR(255))");
+					  "login VARCHAR(255) NOT NULL," +
+					  "password VARCHAR(255) NOT NULL," +
+					  "admin BOOLEAN DEFAULT false)");
 
 		executeUpdate("CREATE TABLE BOOK (" +
 					  "book_id INT AUTO_INCREMENT PRIMARY KEY," +
-					  "title VARCHAR(255)," +
-					  "author VARCHAR(255)," +
-					  "category VARCHAR(255)," +
+					  "title VARCHAR(255) NOT NULL," +
+					  "author VARCHAR(255) NOT NULL," +
+					  "category VARCHAR(255) NOT NULL," +
 					  "rating INT CHECK (rating BETWEEN 1 AND 5))");
 
 		executeUpdate("CREATE TABLE WISH (" +
 					  "wish_id INT AUTO_INCREMENT PRIMARY KEY," +
-					  "user_id INT," +
-					  "book_id INT," +
+					  "user_id INT NOT NULL," +
+					  "book_id INT NOT NULL," +
 					  "FOREIGN KEY (user_id) REFERENCES \"USER\"(user_id) ON DELETE CASCADE," +
 					  "FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE)");
+
+		executeUpdate("INSERT INTO \"USER\" (login, password, admin) VALUES ('admin', 'admin', true)");
 	}
 
 	/*
@@ -77,6 +80,7 @@ public class Database {
 	 *  - int user_id
 	 *  - str login
 	 *  - str password
+	 *  - bool admin
 	 *
 	 * BOOK:
 	 *  - int book_id

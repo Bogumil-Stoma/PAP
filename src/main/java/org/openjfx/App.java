@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.openjfx.controller.SceneController;
+import org.openjfx.database.Database;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -21,5 +22,9 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+
+		System.out.println("closing database...");
+		Database db = Database.getInstance();
+		db.close();
 	}
 }

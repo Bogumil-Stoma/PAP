@@ -42,8 +42,8 @@ public class RegisterController {
 		else
 			System.out.println("Login is already taken");
 
-		System.out.println("Registration: " + txtLogin.getText());
-		System.out.println("Login : " + txtPassword.getText());
+		System.out.println("Login: " + txtLogin.getText());
+		System.out.println("Password: " + txtPassword.getText());
 		System.out.println();
 	}
 

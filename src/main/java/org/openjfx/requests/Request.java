@@ -6,7 +6,7 @@ import org.openjfx.database.Database;
 
 public abstract class Request {
 
-	protected static ResultSet exectuteRequest(String query) {
+	protected static ResultSet executeRequest(String query) {
 		Database database = Database.getInstance();
 		return database.executeQuery(query);
 	}

@@ -8,11 +8,11 @@ import org.openjfx.database.User;
 public class GetUser extends Request {
 
 	public static User Request(String login, String password) {
-		String query = String.format("SELECT login, password FROM \"USER\" WHERE login = '%s' AND password = '%s'", login, password);
-		ResultSet result = exectuteRequest(query);
+		String query = String.format("SELECT login, admin FROM \"USER\" WHERE login = '%s' AND password = '%s'", login, password);
+		ResultSet result = executeRequest(query);
 		try {
 			result.next();
-			return new User(result.getString(1), result.getString(2));
+			return new User(result.getString(1), result.getBoolean(2));
 		}
 		catch(SQLException e) {
 			new Exception(e);

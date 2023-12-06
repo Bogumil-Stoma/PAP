@@ -15,12 +15,12 @@ public class TryCreateUser extends Request  {
 		int result = executeUpdate(query);
 		if (result == -1)
 			return null;
-		return new User(login, password);
+		return new User(login, false); /* created users must be non admins (we only have one admin, don't complicate it) */
 	}
 
 	private static boolean isUserNameInUse(String login) {
 		String query = String.format("SELECT * FROM \"USER\" WHERE login = '%s'", login);
-		ResultSet result = exectuteRequest(query);
+		ResultSet result = executeRequest(query);
 		try {
 			return result.next();
 		}
