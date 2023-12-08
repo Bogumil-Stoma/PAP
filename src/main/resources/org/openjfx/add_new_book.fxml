@@ -38,7 +38,7 @@
             <ChoiceBox fx:id="ratingChoiceBox" layoutX="118.0" layoutY="190.0" prefWidth="150.0" />
             <ChoiceBox fx:id="ifAvailableChoiceBox" layoutX="118.0" layoutY="227.0" prefWidth="150.0" />
             <ChoiceBox fx:id="ifLoanableChoiceBox" layoutX="118.0" layoutY="266.0" prefWidth="150.0" />
-            <Button fx:id="btnSubmit" layoutX="201.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="48.0" prefWidth="134.0" text="Add" textFill="WHITE">
+            <Button fx:id="btnSubmit" defaultButton="true" layoutX="201.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="48.0" prefWidth="134.0" text="Add" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

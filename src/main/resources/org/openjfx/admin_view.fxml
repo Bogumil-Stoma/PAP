@@ -40,7 +40,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-                <Button fx:id="btnAddBook" focusTraversable="false" layoutY="7.0" mnemonicParsing="false" onAction="#onAddNewBookClick" prefHeight="45.0" prefWidth="121.0" text="Add new book" textFill="WHITE">
+                <Button fx:id="btnAddBook" defaultButton="true" focusTraversable="false" layoutY="7.0" mnemonicParsing="false" onAction="#onAddNewBookClick" prefHeight="45.0" prefWidth="121.0" text="Add new book" textFill="WHITE">
                <styleClass>
                   <String fx:value="btn-radius" />
                   <String fx:value="btn" />
