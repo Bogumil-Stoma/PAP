@@ -48,6 +48,11 @@ public class AdminViewController implements Initializable {
 	@FXML
 	private TableColumn<Book, Void> modifyRow;
 
+	private ObservableList<Book> testList = FXCollections.observableArrayList(
+			new Book("A Song of Ice and Fire: A Game of Thrones", "George R.R. Martin", "Fantasy", 1),
+			new Book("Harry Potter", "J.K. Rowling", "Fantasy", 4)
+	);
+
 	@FXML
 	void onAddNewBookClick(ActionEvent event) throws IOException {
 		SceneController.switchScenes(event, "add_new_book", "css/buttons.css");
@@ -63,21 +68,13 @@ public class AdminViewController implements Initializable {
 		System.out.println("Refresh clicked");
 	}
 
-//	TODO: uncomment it when there will be class Book implemented with getters, then add some attributes to controller
-
-//	ObservableList<Book> testList = FXCollections.observableArrayList(
-//			new Book("Jo", "Mama", "Fantasy", 1),
-//			new Book("Harry", "Potter", "Fantasy", 4)
-//	);
-
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-//				title.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
-//				author.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
-//				category.setCellValueFactory(new PropertyValueFactory<Book, String>("category"));
-//				rating.setCellValueFactory(new PropertyValueFactory<Book, Integer>("rating"));
-//
-//				tableBooks.setItems(testList);
-	}
+		title.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
+		author.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
+		category.setCellValueFactory(new PropertyValueFactory<Book, String>("category"));
+		rating.setCellValueFactory(new PropertyValueFactory<Book, Integer>("rating"));
 
+		tableBooks.setItems(testList);
+	}
 }
