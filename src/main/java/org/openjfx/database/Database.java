@@ -65,6 +65,17 @@ public class Database {
 					  "wish_id INT AUTO_INCREMENT PRIMARY KEY," +
 					  "user_id INT NOT NULL," +
 					  "book_id INT NOT NULL," +
+					  "days INT CHECK (days > 0)," +
+					  "FOREIGN KEY (user_id) REFERENCES \"USER\"(user_id) ON DELETE CASCADE," +
+					  "FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE)");
+
+		executeUpdate("CREATE TABLE BORROW (" +
+					  "borrow_id INT AUTO_INCREMENT PRIMARY KEY," +
+					  "user_id INT NOT NULL," +
+					  "book_id INT NOT NULL," +
+					  "days INT CHECK (days > 0)," +
+					  "borrow_date DATE NOT NULL," +
+					  "acknowledged BOOLEAN DEFAULT false," +
 					  "FOREIGN KEY (user_id) REFERENCES \"USER\"(user_id) ON DELETE CASCADE," +
 					  "FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE)");
 
@@ -93,6 +104,15 @@ public class Database {
 	 *  - int wish_id
 	 *  - int user_id
 	 *  - int book_id
+	 *  - int days
+	 *
+	 * BORROW:
+	 *  - int borrow_id
+	 *  - int user_id
+	 *  - int book_id
+	 *  - int days
+	 *  - date borrow_date
+	 *  - bool acknowledged
 	 */
 	public ResultSet executeQuery(String sql) {
 		try {
