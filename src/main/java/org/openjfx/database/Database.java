@@ -44,6 +44,7 @@ public class Database {
 			return; /* Silly jokes.  */
 		}
 
+		executeUpdate("DROP TABLE IF EXISTS BORROW");
 		executeUpdate("DROP TABLE IF EXISTS WISH");
 		executeUpdate("DROP TABLE IF EXISTS BOOK");
 		executeUpdate("DROP TABLE IF EXISTS \"USER\"");
@@ -74,7 +75,7 @@ public class Database {
 					  "user_id INT NOT NULL," +
 					  "book_id INT NOT NULL," +
 					  "days INT CHECK (days > 0)," +
-					  "borrow_date DATE NOT NULL," +
+					  "borrow_date DATE NOT NULL DEFAULT CURRENT_DATE," +
 					  "acknowledged BOOLEAN DEFAULT false," +
 					  "FOREIGN KEY (user_id) REFERENCES \"USER\"(user_id) ON DELETE CASCADE," +
 					  "FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE)");
