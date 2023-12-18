@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.openjfx.App;
 
@@ -14,10 +15,14 @@ import java.util.Objects;
 
 public class SceneController {
 	public static Scene getSceneFromFxml(String fxmlFileName) throws IOException {
+		return new Scene(getParentFromFxml(fxmlFileName));
+	}
+
+	public static Parent getParentFromFxml(String fxmlFileName) throws IOException {
 		String path = "src/main/resources/org/openjfx/" + fxmlFileName +".fxml";
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		FileInputStream fxmlFileStream = new FileInputStream(new File(path));
-		return new Scene(fxmlLoader.load(fxmlFileStream));
+		return fxmlLoader.load(fxmlFileStream);
 	}
 
 	public static void switchScenes(ActionEvent event, String fxmlFileName) throws IOException {

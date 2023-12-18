@@ -44,6 +44,11 @@ public class LoginPageController {
 		System.out.println("Hey, I'm signing in here!");
 		this.printTestInfo();
 
+		SceneController.switchScenes(event, "UserViewMain", "css/buttons.css");
+
+		if ("a".equals("a"))
+			return;
+
 		var user = GetUser.Request(txtLogin.getText(), txtPassword.getText());
 		if (user == null) {
 			System.out.println("Incorrect login or password");

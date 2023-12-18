@@ -6,11 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.openjfx.requests.AddBook;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddBookController implements Initializable {
+public class UViewAddBookController implements Initializable {
+
 	@FXML
 	private Label labelErrors;
 	@FXML
@@ -25,21 +25,21 @@ public class AddBookController implements Initializable {
 	private ChoiceBox<Integer> ratingChoiceBox;
 	@FXML
 	private ChoiceBox<Boolean> ifAvailableChoiceBox;
-
 	@FXML
 	private ChoiceBox<Boolean> ifLoanableChoiceBox;
-	@FXML
-	private Button btnClose;
 	@FXML
 	private Button btnSubmit;
 	private final Integer[] possibleRatings = {1, 2, 3, 4, 5};
 	private final Boolean[] possibleChoices = {true, false};
 
 
-
-	@FXML
-	void onCloseClick(ActionEvent event) throws IOException {
-		SceneController.switchScenes(event, "admin_view", "css/buttons.css");
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		ratingChoiceBox.getItems().addAll(possibleRatings);
+		ifAvailableChoiceBox.getItems().addAll(possibleChoices);
+		ifLoanableChoiceBox.getItems().addAll(possibleChoices);
+		SpinnerValueFactory<Double> valueFactory = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 100.0, 20.0, 0.1);
+		priceSpinner.setValueFactory(valueFactory);
 	}
 
 	@FXML
@@ -58,14 +58,5 @@ public class AddBookController implements Initializable {
 			System.out.println(book.getTitle());
 		else
 			System.out.println("Some error might have had place");
-	}
-
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		ratingChoiceBox.getItems().addAll(possibleRatings);
-		ifAvailableChoiceBox.getItems().addAll(possibleChoices);
-		ifLoanableChoiceBox.getItems().addAll(possibleChoices);
-		SpinnerValueFactory<Double> valueFactory = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 100.0, 20.0, 0.1);
-		priceSpinner.setValueFactory(valueFactory);
 	}
 }
