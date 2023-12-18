@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.AddBookController">
-    <children>
-        <Pane prefHeight="503.0" prefWidth="66.0" style="-fx-background-color: #6B2313;">
-        </Pane>
-        <Label layoutX="133.0" layoutY="31.0" text="Add new book">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.UViewAddBookController">
+   <children>
+        <Label layoutX="133.0" layoutY="31.0" prefHeight="51.0" prefWidth="224.0" text="   Add new book">
             <font>
                 <Font name="System Bold" size="21.0" />
             </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
         </Label>
-        <Separator layoutX="133.0" layoutY="76.0" prefHeight="1.0" prefWidth="520.0" />
-        <Pane layoutX="133.0" layoutY="94.0" prefHeight="380.0" prefWidth="702.0">
+        <Separator layoutX="133.0" layoutY="76.0" prefHeight="12.0" prefWidth="702.0" />
+        <Pane layoutX="133.0" layoutY="94.0" prefHeight="340.0" prefWidth="702.0">
          <children>
             <TextField fx:id="txtTitle" layoutX="119.0" layoutY="8.0" prefHeight="25.0" prefWidth="318.0" promptText="title">
                <font>
@@ -38,7 +40,7 @@
             <ChoiceBox fx:id="ratingChoiceBox" layoutX="118.0" layoutY="190.0" prefWidth="150.0" />
             <ChoiceBox fx:id="ifAvailableChoiceBox" layoutX="118.0" layoutY="227.0" prefWidth="150.0" />
             <ChoiceBox fx:id="ifLoanableChoiceBox" layoutX="118.0" layoutY="266.0" prefWidth="150.0" />
-            <Button fx:id="btnSubmit" defaultButton="true" layoutX="201.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="48.0" prefWidth="134.0" text="Add" textFill="WHITE">
+            <Button fx:id="btnSubmit" defaultButton="true" layoutX="515.0" layoutY="255.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="48.0" prefWidth="134.0" text="Add" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -46,41 +48,37 @@
                   <String fx:value="btn-radius" />
                   <String fx:value="btn" />
                </styleClass></Button>
-            <Button fx:id="btnClose" layoutX="370.0" layoutY="332.0" mnemonicParsing="false" onAction="#onCloseClick" prefHeight="48.0" prefWidth="134.0" styleClass="btn-radius" text="Close" textFill="#555555">
-               <font>
-                  <Font size="18.0" />
-               </font></Button>
-            <Label layoutY="14.0" prefHeight="17.0" prefWidth="66.0" text="Title:">
+            <Label layoutX="23.0" layoutY="13.0" prefHeight="17.0" prefWidth="66.0" text="Title:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="61.0" prefHeight="17.0" prefWidth="66.0" text="Author:">
+            <Label layoutX="23.0" layoutY="60.0" prefHeight="17.0" prefWidth="66.0" text="Author:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="106.0" prefHeight="25.0" prefWidth="80.0" text="Category:">
+            <Label layoutX="23.0" layoutY="105.0" prefHeight="25.0" prefWidth="80.0" text="Category:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="150.0" prefHeight="25.0" prefWidth="80.0" text="Price:">
+            <Label layoutX="23.0" layoutY="150.0" prefHeight="25.0" prefWidth="80.0" text="Price:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="190.0" prefHeight="25.0" prefWidth="80.0" text="Rating:">
+            <Label layoutX="23.0" layoutY="190.0" prefHeight="25.0" prefWidth="80.0" text="Rating:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="227.0" prefHeight="25.0" prefWidth="80.0" text="IfAvailable:">
+            <Label layoutX="23.0" layoutY="227.0" prefHeight="25.0" prefWidth="80.0" text="IfAvailable:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutY="266.0" prefHeight="25.0" prefWidth="80.0" text="IfLoanable:">
+            <Label layoutX="23.0" layoutY="266.0" prefHeight="25.0" prefWidth="80.0" text="IfLoanable:">
                <font>
                   <Font size="16.0" />
                </font>
@@ -89,4 +87,4 @@
             <Label fx:id="labelErrors" alignment="CENTER" layoutX="97.0" layoutY="304.0" prefHeight="17.0" prefWidth="508.0" textFill="RED" />
          </children></Pane>
     </children>
-</AnchorPane>
+</VBox>

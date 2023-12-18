@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.UViewBorrowedBooksController">
+   <children>
+      <Label prefHeight="51.0" prefWidth="357.0" text="   Borrowed books">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Separator prefHeight="12.0" prefWidth="702.0" />
+      <TableView fx:id="tableBooks" focusTraversable="false" prefHeight="326.0" prefWidth="806.0">
+         <columns>
+            <TableColumn fx:id="bookId" maxWidth="230.39999389648438" minWidth="4.0" prefWidth="40.800048828125" text="Id" />
+            <TableColumn fx:id="title" maxWidth="276.79991912841797" prefWidth="121.60003662109375" text="Title" />
+            <TableColumn fx:id="author" maxWidth="283.99993896484375" prefWidth="120.79997253417969" text="Author" />
+            <TableColumn fx:id="category" maxWidth="270.3999938964844" minWidth="0.0" prefWidth="94.39996337890625" text="Category" />
+            <TableColumn fx:id="rating" maxWidth="230.39999389648438" minWidth="4.0" prefWidth="50.4000244140625" text="Rating" />
+            <TableColumn fx:id="ifAvailable" maxWidth="250.40005493164062" prefWidth="68.0" text="Available" />
+            <TableColumn fx:id="ifLoanable" maxWidth="235.2000732421875" minWidth="0.0" prefWidth="62.39990234375" text="Loanable" />
+            <TableColumn fx:id="price" maxWidth="310.39990234375" minWidth="0.0" prefWidth="71.199951171875" text="Price" />
+            <TableColumn fx:id="modifyRow" maxWidth="374.39990234375" minWidth="0.0" prefWidth="74.39990234375" sortable="false" text="Action" />
+            <TableColumn fx:id="removeRow" maxWidth="326.4000244140625" minWidth="0.0" prefWidth="98.7999267578125" sortable="false" text="Action2" />
+         </columns>
+      </TableView>
+   </children>
+</VBox>

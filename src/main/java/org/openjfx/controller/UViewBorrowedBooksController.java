@@ -1,23 +1,20 @@
 package org.openjfx.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-
-import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.openjfx.database.Book;
 
-public class AdminViewController implements Initializable {
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+public class UViewBorrowedBooksController  implements Initializable {
+
 	@FXML
 	private TableView<Book> tableBooks;
 	@FXML
@@ -36,37 +33,8 @@ public class AdminViewController implements Initializable {
 	private TableColumn<?, ?> ifLoanable;
 	@FXML
 	private TableColumn<?, ?> price;
-	@FXML
-	private Button btnAddBook;
-	@FXML
-	private Button btnLogOut;
-	@FXML
-	private Button btnRefresh;
-//	There will be buttons for 'Delete' and 'Modify'
-	@FXML
-	private TableColumn<Book, Void> removeRow;
-	@FXML
-	private TableColumn<Book, Void> modifyRow;
 
-	private ObservableList<Book> testList = FXCollections.observableArrayList(
-			new Book("A Song of Ice and Fire: A Game of Thrones", "George R.R. Martin", "Fantasy", 1),
-			new Book("Harry Potter", "J.K. Rowling", "Fantasy", 4)
-	);
-
-	@FXML
-	void onAddNewBookClick(ActionEvent event) throws IOException {
-		SceneController.switchScenes(event, "add_new_book", "css/buttons.css");
-	}
-
-	@FXML
-	void onLogOutClick(ActionEvent event) throws IOException {
-		SceneController.switchScenes(event, "login", "css/login.css");
-	}
-
-	@FXML
-	void onRefreshClick(ActionEvent event) {
-		System.out.println("Refresh clicked");
-	}
+	private ObservableList<Book> books = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,6 +43,14 @@ public class AdminViewController implements Initializable {
 		category.setCellValueFactory(new PropertyValueFactory<Book, String>("category"));
 		rating.setCellValueFactory(new PropertyValueFactory<Book, Integer>("rating"));
 
-		tableBooks.setItems(testList);
+		tableBooks.setItems(books);
+		refreshList();
 	}
+
+	private void refreshList() {
+		books.clear();
+		books.add(new Book("A Song of Ice and Fire: A Game of Thrones", "George R.R. Martin", "Fantasy", 1));
+		books.add(new Book("Harry Potter", "J.K. Rowling", "Fantasy", 4));
+	}
+
 }

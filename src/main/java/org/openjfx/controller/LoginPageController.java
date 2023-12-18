@@ -50,12 +50,7 @@ public class LoginPageController {
 			return;
 		}
 
-		System.out.println(user.getLogin());
-
-		if (user.getAdmin()) {
-			System.out.println("You will be logged in as admin");
-			SceneController.switchScenes(event, "admin_view", "css/buttons.css");
-		}
+		SceneController.singIn(event, user);
 	}
 
 	@FXML
