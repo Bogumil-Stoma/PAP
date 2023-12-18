@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="381.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.UViewAddBookController">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.UViewAddBookController">
    <children>
         <Label layoutX="133.0" layoutY="31.0" prefHeight="51.0" prefWidth="224.0" text="   Add new book">
             <font>
