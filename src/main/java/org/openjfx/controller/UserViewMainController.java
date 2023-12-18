@@ -1,5 +1,6 @@
 package org.openjfx.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -30,4 +31,9 @@ public class UserViewMainController {
 			}
 		}
     }
+
+	@FXML
+	void onLogOutClick(ActionEvent event) throws IOException {
+		SceneController.switchScenes(event, "login", "css/login.css");
+	}
 }
