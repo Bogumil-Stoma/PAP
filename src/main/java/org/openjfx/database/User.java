@@ -12,5 +12,5 @@ public class User {
 	}
 
 	public String getLogin() { return login; }
-	public Boolean getAdmin() { return admin; }
+	public Boolean isAdmin() { return admin; }
 }

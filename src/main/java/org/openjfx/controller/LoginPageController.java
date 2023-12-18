@@ -44,23 +44,13 @@ public class LoginPageController {
 		System.out.println("Hey, I'm signing in here!");
 		this.printTestInfo();
 
-		SceneController.switchScenes(event, "UserViewMain", "css/buttons.css");
-
-		if ("a".equals("a"))
-			return;
-
 		var user = GetUser.Request(txtLogin.getText(), txtPassword.getText());
 		if (user == null) {
 			System.out.println("Incorrect login or password");
 			return;
 		}
 
-		System.out.println(user.getLogin());
-
-		if (user.getAdmin()) {
-			System.out.println("You will be logged in as admin");
-			SceneController.switchScenes(event, "admin_view", "css/buttons.css");
-		}
+		SceneController.singIn(event, user);
 	}
 
 	@FXML

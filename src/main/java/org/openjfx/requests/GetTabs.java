@@ -3,12 +3,21 @@ package org.openjfx.requests;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openjfx.database.User;
+
 public class GetTabs extends Request {
 
-	public static List<TabData> Request() {
+	public static List<TabData> request(User usr) {
+
 		var list = new ArrayList<TabData>();
+
 		list.add(new TabData("Borrowed books", "UserView_BorrowedBooks"));
-		list.add(new TabData("Add book", "UserView_AddBook"));
+
+		if (usr.isAdmin())
+		{
+			list.add(new TabData("Add book", "UserView_AddBook"));
+		}
+
 		return list;
 	}
 

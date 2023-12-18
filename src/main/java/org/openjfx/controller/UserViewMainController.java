@@ -19,7 +19,7 @@ public class UserViewMainController {
 		tabPane.getTabs().removeAll(tabPane.getTabs());
 
 		// add new tabs
-		for (var tabData : GetTabs.Request()) {
+		for (var tabData : GetTabs.request(SceneController.getCurrentUser())) {
 			try {
 				var tab = new Tab(tabData.TabName());
 				tab.setContent(SceneController.getParentFromFxml(tabData.ViewFileName()));
@@ -27,13 +27,13 @@ public class UserViewMainController {
 				tabPane.getTabs().add(tab);
 			}
 			catch (IOException e) {
-				System.out.println("Could not load tab of " + tabData.TabName() + "\nerror:\n" + e.getMessage());
+				System.out.println("Could not load tab of " + tabData.TabName() + "\nerror:\n" + e);
 			}
 		}
     }
 
 	@FXML
 	void onLogOutClick(ActionEvent event) throws IOException {
-		SceneController.switchScenes(event, "login", "css/login.css");
+		SceneController.singOut(event);
 	}
 }
