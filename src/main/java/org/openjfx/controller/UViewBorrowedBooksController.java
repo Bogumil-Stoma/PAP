@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.openjfx.requests.GetBook;
 
 public class UViewBorrowedBooksController  implements Initializable {
 
@@ -49,8 +50,10 @@ public class UViewBorrowedBooksController  implements Initializable {
 
 	private void refreshList() {
 		books.clear();
-		books.add(new Book("A Song of Ice and Fire: A Game of Thrones", "George R.R. Martin", "Fantasy", 1));
-		books.add(new Book("Harry Potter", "J.K. Rowling", "Fantasy", 4));
+		var bookArrayList = GetBook.Request();
+		if (bookArrayList != null) {
+			books.addAll(bookArrayList);
+		}
 	}
 
 }
