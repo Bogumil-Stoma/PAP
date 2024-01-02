@@ -64,7 +64,7 @@ public class SceneController {
 	public static void singOut(ActionEvent event) {
 		currentUser = null;
 		try {
-			SceneController.switchScenes(event, "login", "css/login.css");
+			SceneController.switchScenes(event, "Login", "css/login.css");
 			currentUser = null;
 		}
 		catch (IOException e) {

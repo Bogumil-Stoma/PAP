@@ -12,7 +12,7 @@ import java.util.Objects;
 public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
-		Scene scene = SceneController.getSceneFromFxml("login");
+		Scene scene = SceneController.getSceneFromFxml("Login");
 		scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/login.css")).toExternalForm());
 		stage.setTitle("Bookshop App");
 		stage.setResizable(false);
