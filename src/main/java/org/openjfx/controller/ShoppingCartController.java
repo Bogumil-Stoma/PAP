@@ -14,10 +14,6 @@ public class ShoppingCartController {
 	@FXML
 	private TableColumn<?, ?> bookId;
 	@FXML
-	private Button btnBuy;
-	@FXML
-	private Button btnGoBack;
-	@FXML
 	private TableColumn<?, ?> price;
 	@FXML
 	private TableColumn<?, Void> removeRow;

@@ -29,4 +29,5 @@ Aplikacja desktopowa opcjonalnie z bazą danych
 ### Terminy
 
 - etap 1: do 14. listopada - WYKONANY
-- etap 2: do 5. grudnia - prototyp aplikacji
+- etap 2: do 5. grudnia - prototyp aplikacji - WYKONANY
+- etap 3: do 10. stycznia - działająca aplikacja - ...

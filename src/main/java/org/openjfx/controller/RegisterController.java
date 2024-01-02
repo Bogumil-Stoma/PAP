@@ -18,37 +18,33 @@ public class RegisterController {
 	private TextField txtLogin;
 	@FXML
 	private TextField txtPassword;
-	@FXML
-	private Button btnCancel;
-	@FXML
-	private Button btnRegister;
 
-	private void signaliseIfNoInput() {
+	private boolean signaliseNoInput() {
 		if (txtLogin.getText().isEmpty()) {
 			labelErrors.setText("You need to pass a login");
+			return true;
 		}
 		else if (txtPassword.getText().isEmpty()) {
 			labelErrors.setText("You need to pass a password");
+			return true;
 		}
+		return false;
 	}
 
 	@FXML
 	private void onRegisterClick(ActionEvent event) {
-		this.signaliseIfNoInput();
+		if (this.signaliseNoInput())
+			return;
 
 		var user = TryCreateUser.Execute(txtLogin.getText(), txtPassword.getText());
 		if (user != null)
 			System.out.println(user.getLogin());
 		else
-			System.out.println("Login is already taken");
-
-		System.out.println("Login: " + txtLogin.getText());
-		System.out.println("Password: " + txtPassword.getText());
-		System.out.println();
+			labelErrors.setText(("Login is already taken"));
 	}
 
 	@FXML
 	private void onCancelClick(ActionEvent event) throws IOException {
-		SceneController.switchScenes(event, "login", "css/login.css");
+		SceneController.switchScenes(event, "Login", "css/login.css");
 	}
 }
