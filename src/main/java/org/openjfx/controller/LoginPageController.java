@@ -15,38 +15,13 @@ public class LoginPageController {
 	private PasswordField txtPassword;
 	@FXML
 	private TextField txtLogin;
-	@FXML
-	private Button btnSignIn;
-	@FXML
-	private Button btnSignUp;
-	@FXML
-	private ToggleGroup userType;
 
-	private void signaliseIfNoInput() {
-		if (txtLogin.getText().isEmpty()) {
-			labelErrors.setText("No login");
-		}
-		else if (txtPassword.getText().isEmpty()) {
-			labelErrors.setText("No password");
-		}
-	}
-
-	private void printTestInfo() {
-		System.out.println("Current login: " + txtLogin.getText());
-		System.out.println("Current password: " + txtPassword.getText());
-		System.out.println();
-	}
 
 	@FXML
-	private void onSingInClick(ActionEvent event) throws IOException {
-		this.signaliseIfNoInput();
-
-		System.out.println("Hey, I'm signing in here!");
-		this.printTestInfo();
-
+	private void onSingInClick(ActionEvent event) {
 		var user = GetUser.Request(txtLogin.getText(), txtPassword.getText());
 		if (user == null) {
-			System.out.println("Incorrect login or password");
+			labelErrors.setText("Incorrect login or password");
 			return;
 		}
 
@@ -55,9 +30,6 @@ public class LoginPageController {
 
 	@FXML
 	private void onSignUpClick(ActionEvent event) throws IOException {
-		System.out.println("Hey, I'm signing up here!");
-		this.printTestInfo();
-
-		SceneController.switchScenes(event, "register", "css/buttons.css");
+		SceneController.switchScenes(event, "Register", "css/buttons.css");
 	}
 }
