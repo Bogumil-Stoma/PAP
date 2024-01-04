@@ -31,3 +31,19 @@ Aplikacja desktopowa opcjonalnie z bazą danych
 - etap 1: do 14. listopada - WYKONANY
 - etap 2: do 5. grudnia - prototyp aplikacji - WYKONANY
 - etap 3: do 10. stycznia - działająca aplikacja - ...
+
+### Zakładki
+
+#### Usera:
+- lista dostępnych książek
+- lista wypożyczonych książek
+- powiadomienia
+
+#### Admina:
+- lista wszystkich książek
+- dodawanie książek
+- akceptacja wypożyczeń
+- akceptacja zwrotów
+- powiadomienia (np masz do zaakceptowania n książek)
+
+
