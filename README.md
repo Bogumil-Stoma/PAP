@@ -35,9 +35,10 @@ Aplikacja desktopowa opcjonalnie z bazą danych
 ### Zakładki
 
 #### Usera:
-- lista dostępnych książek
+- lista dostępnych książek + możliwość dodania do listy życzeń
 - lista wypożyczonych książek
 - powiadomienia
+- lista życzeń (jest do tego oddzielna tabela)
 
 #### Admina:
 - lista wszystkich książek
@@ -45,5 +46,3 @@ Aplikacja desktopowa opcjonalnie z bazą danych
 - akceptacja wypożyczeń
 - akceptacja zwrotów
 - powiadomienia (np masz do zaakceptowania n książek)
-
-
