@@ -6,12 +6,16 @@ package org.openjfx.database;
  */
 public class Book {
 
-	private String title="", author="", category="", bookID="-1";
-	private int rating=-1;
+	private String title="", author="", category="";
+	private int rating=-1, bookID=-1, amount=0;
 
 
 	public String getTitle() {
 		return title;
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 
 	public String getAuthor() {
@@ -22,7 +26,7 @@ public class Book {
 		return category;
 	}
 
-	public String getBookID() {
+	public int getBookID() {
 		return bookID;
 	}
 
@@ -30,19 +34,21 @@ public class Book {
 		return rating;
 	}
 
-	public Book(String title, String author, String category, int rating)
+	public Book(String title, String author, String category, int rating, int amount)
 	{
 		this.title = title;
 		this.author = author;
 		this.category = category;
 		this.rating = rating;
+		this.amount = amount;
 	}
-	public Book(String bookID, String title, String author, String category, int rating)
+	public Book(int bookID, String title, String author, String category, int rating, int amount)
 	{
 		this.bookID = bookID;
 		this.title = title;
 		this.author = author;
 		this.category = category;
 		this.rating = rating;
+		this.amount = amount;
 	}
 }

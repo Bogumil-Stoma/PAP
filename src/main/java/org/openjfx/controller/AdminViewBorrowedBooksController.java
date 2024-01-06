@@ -11,6 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.openjfx.database.BorrowedBook;
+import org.openjfx.requests.GetBooks;
+import org.openjfx.requests.GetBorrowedBooks;
+import org.openjfx.requests.RemoveBook;
+import org.openjfx.requests.RemoveBorrowedBook;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,8 +47,6 @@ public class AdminViewBorrowedBooksController implements Initializable {
 //		System.out.println("Here we should see books from BORROW table which have 'acknowledge' set to true");
 
 		ArrayList<BorrowedBook> testingArray = new ArrayList<>();
-		testingArray.add(new BorrowedBook(345, 45, 12,  new Date(), false));
-		testingArray.add(new BorrowedBook(345, 45, 899,  new Date(2021, 12, 3), false));
 		this.books = FXCollections.observableArrayList(testingArray);
 
 		userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -54,18 +56,23 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 
 		tableBooks.setItems(books);
-		refreshList();
+		refreshList(null);
 
 		this.addButtonsToTableView();
 	}
 
-	private void refreshList() {
-		System.out.println("Refresh of borrowed books");
+	private void refreshList(String text) {
+		// if text == null, then return all rows, if not, return rows similar to text
+		books.clear();
+		var bookArrayList = GetBorrowedBooks.Request(text, true);
+		if (bookArrayList != null) {
+			books.addAll(bookArrayList);
+		}
 	}
 
 	@FXML
 	void onRefreshClick(ActionEvent event) {
-		this.refreshList();
+		this.refreshList(null);
 	}
 
 	@FXML
@@ -84,5 +91,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 	private void removeBook(BorrowedBook book) {
 		System.out.println("The BorrowedBook should be marked as returned (removed)");
+		var res = RemoveBorrowedBook.Request(book.getBorrowedID(), book.getBookId());
+		refreshList(null);
 	}
 }

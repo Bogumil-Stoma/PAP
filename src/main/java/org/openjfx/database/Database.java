@@ -60,7 +60,9 @@ public class Database {
 					  "title VARCHAR(255) NOT NULL," +
 					  "author VARCHAR(255) NOT NULL," +
 					  "category VARCHAR(255) NOT NULL," +
-					  "rating INT CHECK (rating BETWEEN 1 AND 5))");
+					  "rating INT CHECK (rating BETWEEN 1 AND 5)," +
+						"amount INT)"
+						);
 
 		executeUpdate("CREATE TABLE WISH (" +
 					  "wish_id INT AUTO_INCREMENT PRIMARY KEY," +

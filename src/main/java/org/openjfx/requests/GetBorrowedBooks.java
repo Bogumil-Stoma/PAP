@@ -1,16 +1,15 @@
 package org.openjfx.requests;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.openjfx.database.BorrowedBook;
 
-import org.openjfx.database.Book;
-public class GetBook extends Request{
+public class GetBorrowedBooks extends Request{
 
 
-	public static ArrayList<Book> Request(String text) {
-		var books = new ArrayList<Book>();
-		var query = "SELECT * FROM \"BOOK\"";
+	public static ArrayList<BorrowedBook> Request(String text, Boolean isAcknowledged) {
+		var books = new ArrayList<BorrowedBook>();
+		var query = "SELECT * FROM \"BORROW\"";
 
 		if (text!=null){
 			query = "SELECT * FROM BOOK " +
@@ -24,12 +23,15 @@ public class GetBook extends Request{
 		}
 		try (ResultSet result = executeRequest(query)){
 			while (result.next()) {
-				var bookID = result.getString(1);
-				var title = result.getString(2);
-				var author = result.getString(3);
-				var category = result.getString(4);
-				var rating = result.getInt(5);
-				books.add(new Book(bookID, title, author, category, rating));
+				var acknowledged = result.getBoolean(6);
+				if (isAcknowledged != acknowledged)
+					continue;
+				var borrow_id = result.getInt(1);
+				var user_id = result.getInt(2);
+				var book_id = result.getInt(3);
+				var days = result.getInt(4);
+				var borrow_date = result.getDate(5);
+				books.add(new BorrowedBook(borrow_id, book_id, user_id, days, borrow_date, acknowledged));
 			}
 			return books;
 		}

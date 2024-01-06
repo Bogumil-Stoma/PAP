@@ -12,8 +12,6 @@ import java.util.ResourceBundle;
 public class UViewAddBookController implements Initializable {
 
 	@FXML
-	private Label labelInfo;
-	@FXML
 	private Label labelErrors;
 	@FXML
 	private TextField txtTitle;
@@ -26,7 +24,11 @@ public class UViewAddBookController implements Initializable {
 	@FXML
 	private ChoiceBox<Integer> ratingChoiceBox;
 	@FXML
+	private ChoiceBox<Boolean> ifAvailableChoiceBox;
+	@FXML
 	private ChoiceBox<Boolean> ifLoanableChoiceBox;
+	@FXML
+	private Button btnSubmit;
 	private final Integer[] possibleRatings = {1, 2, 3, 4, 5};
 	private final Boolean[] possibleChoices = {true, false};
 
@@ -34,6 +36,7 @@ public class UViewAddBookController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		ratingChoiceBox.getItems().addAll(possibleRatings);
+		ifAvailableChoiceBox.getItems().addAll(possibleChoices);
 		ifLoanableChoiceBox.getItems().addAll(possibleChoices);
 		SpinnerValueFactory<Double> valueFactory = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 100.0, 20.0, 0.1);
 		priceSpinner.setValueFactory(valueFactory);
@@ -41,37 +44,20 @@ public class UViewAddBookController implements Initializable {
 
 	@FXML
 	void onSubmitClick(ActionEvent event) {
-		labelInfo.setText("");
-		labelErrors.setText("");
-
 		System.out.println("Title: " + txtTitle.getText());
 		System.out.println("Author: " + txtAuthor.getText());
 		System.out.println("Category: " + txtCategory.getText());
 		System.out.println("Price: " + priceSpinner.getValue());
+		System.out.println("IfAvailable: " + ifAvailableChoiceBox.getValue());
 		System.out.println("IfLoanable: " + ifLoanableChoiceBox.getValue());
 		System.out.println();
 
-		try {
-			var book = AddBook.Request(txtTitle.getText(), txtAuthor.getText(), txtCategory.getText(), ratingChoiceBox.getValue());
-			if (book != null)
-				labelInfo.setText(book.getTitle() + " was added...");
-			else
-				labelErrors.setText("Empty object cannot be added");
-		}
-		catch (Exception e) {
-			labelErrors.setText("Some error occurred");
-		}
-	}
+		var book = AddBook.Request(txtTitle.getText(), txtAuthor.getText(), txtCategory.getText(), ratingChoiceBox.getValue());
 
-	@FXML
-	void onClearClick(ActionEvent event) {
-		txtTitle.clear();
-		txtAuthor.clear();
-		txtCategory.clear();
-		priceSpinner.getValueFactory().setValue(20.0);
-		ratingChoiceBox.getSelectionModel().clearSelection();
-		ifLoanableChoiceBox.getSelectionModel().clearSelection();
-		labelInfo.setText("");
-		labelErrors.setText("");
+		if (book != null)
+			System.out.println(book.getTitle());
+		else
+			System.out.println("Some error might have had place");
+
 	}
 }

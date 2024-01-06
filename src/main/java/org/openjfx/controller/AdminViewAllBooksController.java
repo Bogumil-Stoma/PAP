@@ -11,8 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.openjfx.database.Book;
-import org.openjfx.requests.GetBook;
-import org.openjfx.requests.RemoveBook;
+import org.openjfx.requests.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,8 +57,9 @@ public class AdminViewAllBooksController implements Initializable {
 	}
 
 	private void refreshList(String text) {
+		// if text == null, then return all rows, if not, return rows similar to text
 		books.clear();
-		var bookArrayList = GetBook.Request(text);
+		var bookArrayList = GetBooks.Request(text);
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -98,13 +98,21 @@ public class AdminViewAllBooksController implements Initializable {
 		catch (Exception e) {
 			System.out.println("error with executing sql");
 		}
+		refreshList(null);
 	}
 
 	private void addAmount(Book book) {
-		System.out.println("This book: " + book.getTitle() + " should have amount + 1");
+		ChangeBookAmount.Request(1, book.getBookID());
+		System.out.println(book.getAmount());
+		refreshList(null);
 	}
 
 	private void subtractAmount(Book book) {
-		System.out.println("This book: " + book.getTitle() + " should have amount - 1");
+		if (book.getAmount() > 0) {
+			ChangeBookAmount.Request(-1, book.getBookID());
+			refreshList(null);
+		}
+		else
+			System.out.println("cant decrement");
 	}
 }
