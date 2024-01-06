@@ -11,7 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.openjfx.database.Book;
+import org.openjfx.requests.AddBook;
 import org.openjfx.requests.GetBook;
+import org.openjfx.requests.RemoveBook;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -86,7 +88,16 @@ public class AdminViewAllBooksController implements Initializable {
 	}
 
 	private void removeBook(Book book) {
-		System.out.println("This book: " + book.getTitle() + " should be removed");
+		try {
+			var result = RemoveBook.Request(book.getBookID());
+			if (result == 1)
+				System.out.println("book was removed");
+			else
+				System.out.println("error with wrong book id");
+		}
+		catch (Exception e) {
+			System.out.println("error with executing sql");
+		}
 	}
 
 	private void addAmount(Book book) {

@@ -6,8 +6,9 @@ package org.openjfx.database;
  */
 public class Book {
 
-	private String title, author, category;
+	private String title, author, category, bookID="-1";
 	private int rating;
+
 
 	public String getTitle() {
 		return title;
@@ -21,17 +22,27 @@ public class Book {
 		return category;
 	}
 
+	public String getBookID() {
+		return bookID;
+	}
+
 	public int getRating() {
 		return rating;
 	}
 
 	public Book(String title, String author, String category, int rating)
 	{
-		//TODO add fields when database gets updated (myb getters and setters)
 		this.title = title;
 		this.author = author;
 		this.category = category;
 		this.rating = rating;
 	}
-
+	public Book(String bookID, String title, String author, String category, int rating)
+	{
+		this.bookID = bookID;
+		this.title = title;
+		this.author = author;
+		this.category = category;
+		this.rating = rating;
+	}
 }
