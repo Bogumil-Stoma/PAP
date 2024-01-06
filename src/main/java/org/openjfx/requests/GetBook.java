@@ -13,11 +13,12 @@ public class GetBook extends Request{
 
 		try (ResultSet result = executeRequest(query)){
 			while (result.next()) {
+				var bookID = result.getString(1);
 				var title = result.getString(2);
 				var author = result.getString(3);
 				var category = result.getString(4);
 				var rating = result.getInt(5);
-				books.add(new Book(title, author, category, rating));
+				books.add(new Book(bookID, title, author, category, rating));
 			}
 			return books;
 		}
