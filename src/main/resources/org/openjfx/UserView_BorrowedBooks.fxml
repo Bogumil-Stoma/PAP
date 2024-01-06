@@ -36,16 +36,15 @@
       <Separator prefHeight="27.0" prefWidth="915.0" />
       <TableView fx:id="tableBooks" focusTraversable="false">
          <columns>
-            <TableColumn fx:id="bookId" maxWidth="230.39999389648438" minWidth="4.0" prefWidth="40.800048828125" text="Id" />
-            <TableColumn fx:id="title" maxWidth="276.79991912841797" prefWidth="121.60003662109375" text="Title" />
-            <TableColumn fx:id="author" maxWidth="283.99993896484375" prefWidth="120.79997253417969" text="Author" />
-            <TableColumn fx:id="category" maxWidth="270.3999938964844" minWidth="0.0" prefWidth="94.39996337890625" text="Category" />
-            <TableColumn fx:id="rating" maxWidth="230.39999389648438" minWidth="4.0" prefWidth="50.4000244140625" text="Rating" />
-            <TableColumn fx:id="ifLoanable" maxWidth="235.2000732421875" minWidth="0.0" prefWidth="62.39990234375" text="Loanable" />
-            <TableColumn fx:id="price" maxWidth="310.39990234375" minWidth="0.0" prefWidth="71.199951171875" text="Price" />
-            <TableColumn fx:id="modifyRow" maxWidth="374.39990234375" minWidth="0.0" prefWidth="74.39990234375" sortable="false" text="Action" />
-            <TableColumn fx:id="removeRow" maxWidth="326.4000244140625" minWidth="0.0" prefWidth="98.7999267578125" sortable="false" text="Action" />
+            <TableColumn fx:id="title" maxWidth="331.19995725154877" prefWidth="260.00001180171967" text="Title" />
+            <TableColumn fx:id="author" maxWidth="337.60003662109375" prefWidth="175.20001220703125" text="Author" />
+            <TableColumn fx:id="category" maxWidth="288.0000305175781" minWidth="0.0" prefWidth="108.79986572265625" text="Category" />
+            <TableColumn fx:id="rating" maxWidth="266.3998107910156" minWidth="4.0" prefWidth="82.39990234375" style="-fx-alignment: CENTER;" text="Rating" />
+            <TableColumn fx:id="removeRow" maxWidth="525.5999938964844" minWidth="0.0" prefWidth="213.60009765625" sortable="false" style="-fx-alignment: CENTER;" text="Action" />
          </columns>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </VBox.margin>
       </TableView>
    </children>
 </VBox>

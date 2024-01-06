@@ -11,11 +11,16 @@ public class GetTabs extends Request {
 
 		var list = new ArrayList<TabData>();
 
-		list.add(new TabData("Borrowed books", "UserView_BorrowedBooks"));
-
 		if (usr.isAdmin())
 		{
-			list.add(new TabData("Add book", "UserView_AddBook"));
+			list.add(new TabData("All books", "AdminView_AllBooks"));
+			list.add(new TabData("Borrowed books", "AdminView_BorrowedBooks"));
+			list.add(new TabData("Wanted to be borrowed", "AdminView_WantedBooks"));
+			list.add(new TabData("Add book", "AdminView_AddBook"));
+			list.add(new TabData("Notifications", "AdminNotifications"));
+		}
+		else {
+			list.add(new TabData("Borrowed books", "UserView_BorrowedBooks"));
 		}
 
 		return list;
