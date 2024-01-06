@@ -11,9 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.openjfx.database.Book;
-import org.openjfx.requests.AddBorrowedBook;
-import org.openjfx.requests.GetBooks;
-import org.openjfx.requests.RemoveBook;
+import org.openjfx.requests.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -70,7 +68,6 @@ public class AdminViewAllBooksController implements Initializable {
 	@FXML
 	void onRefreshClick(ActionEvent event) {
 		this.refreshList(null);
-		AddBorrowedBook.Request(1,1);
 	}
 
 	@FXML
@@ -105,10 +102,17 @@ public class AdminViewAllBooksController implements Initializable {
 	}
 
 	private void addAmount(Book book) {
-		System.out.println("This book: " + book.getTitle() + " should have amount + 1");
+		ChangeBookAmount.Request(1, book.getBookID());
+		System.out.println(book.getAmount());
+		refreshList(null);
 	}
 
 	private void subtractAmount(Book book) {
-		System.out.println("This book: " + book.getTitle() + " should have amount - 1");
+		if (book.getAmount() > 0) {
+			ChangeBookAmount.Request(-1, book.getBookID());
+			refreshList(null);
+		}
+		else
+			System.out.println("cant decrement");
 	}
 }

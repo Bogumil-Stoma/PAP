@@ -91,7 +91,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 	private void removeBook(BorrowedBook book) {
 		System.out.println("The BorrowedBook should be marked as returned (removed)");
-		var res = RemoveBorrowedBook.Request(book.getBorrowedID());
+		var res = RemoveBorrowedBook.Request(book.getBorrowedID(), book.getBookId());
 		refreshList(null);
 	}
 }
