@@ -1,5 +1,4 @@
 package org.openjfx.requests;
-import org.openjfx.database.Book;
 
 public class RemoveBook extends Request{
 	public static int Request(String bookID) {

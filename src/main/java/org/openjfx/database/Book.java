@@ -6,8 +6,8 @@ package org.openjfx.database;
  */
 public class Book {
 
-	private String title, author, category, bookID="-1";
-	private int rating;
+	private String title="", author="", category="", bookID="-1";
+	private int rating=-1;
 
 
 	public String getTitle() {

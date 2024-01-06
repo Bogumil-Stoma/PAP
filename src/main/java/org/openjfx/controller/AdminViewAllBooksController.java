@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.openjfx.database.Book;
-import org.openjfx.requests.AddBook;
 import org.openjfx.requests.GetBook;
 import org.openjfx.requests.RemoveBook;
 
@@ -53,14 +52,14 @@ public class AdminViewAllBooksController implements Initializable {
 		rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
 		tableBooks.setItems(books);
-		refreshList();
+		refreshList(null);
 
 		this.addButtonsToTableView();
 	}
 
-	private void refreshList() {
+	private void refreshList(String text) {
 		books.clear();
-		var bookArrayList = GetBook.Request();
+		var bookArrayList = GetBook.Request(text);
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -68,7 +67,7 @@ public class AdminViewAllBooksController implements Initializable {
 
 	@FXML
 	void onRefreshClick(ActionEvent event) {
-		this.refreshList();
+		this.refreshList(null);
 	}
 
 	@FXML
@@ -76,7 +75,8 @@ public class AdminViewAllBooksController implements Initializable {
 		if (txtSearch.getText().isEmpty())
 			return;
 
-		System.out.println("I want to see all books which titles contain the word: " + txtSearch.getText().toLowerCase());
+		refreshList(txtSearch.getText().toLowerCase());
+
 		txtSearch.clear();
 		vbox.requestFocus(); // take away focus from txtSearch TextField
 	}
