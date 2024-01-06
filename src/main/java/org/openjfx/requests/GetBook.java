@@ -7,10 +7,21 @@ import java.util.ArrayList;
 import org.openjfx.database.Book;
 public class GetBook extends Request{
 
-	public static ArrayList<Book> Request() {
+
+	public static ArrayList<Book> Request(String text) {
 		var books = new ArrayList<Book>();
 		var query = "SELECT * FROM \"BOOK\"";
 
+		if (text!=null){
+			query = "SELECT * FROM BOOK " +
+					"WHERE DIFFERENCE(TITLE, '%s') > 2 " +
+					"OR DIFFERENCE(AUTHOR, '%s') > 2 " +
+					"OR DIFFERENCE(CATEGORY, '%s') = 4 " +
+					"ORDER BY DIFFERENCE(TITLE, '%s') + DIFFERENCE(AUTHOR, '%s') + DIFFERENCE(CATEGORY, '%s') DESC";
+
+			query = String.format(query, text, text, text, text, text, text);
+
+		}
 		try (ResultSet result = executeRequest(query)){
 			while (result.next()) {
 				var bookID = result.getString(1);

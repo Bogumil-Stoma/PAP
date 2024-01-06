@@ -47,7 +47,7 @@ public class UViewBorrowedBooksController  implements Initializable {
 
 	private void refreshList() {
 		books.clear();
-		var bookArrayList = GetBook.Request();
+		var bookArrayList = GetBook.Request(null);
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
