@@ -9,6 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.openjfx.database.BorrowedBook;
+import org.openjfx.requests.AcknowledgeBorrow;
+import org.openjfx.requests.GetBorrowedBooks;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,8 +39,6 @@ public class AdminViewWantedBooksController implements Initializable {
 //		System.out.println("Here we should see books from BORROW table which have 'acknowledge' set to false");
 
 		ArrayList<BorrowedBook> testingArray = new ArrayList<>();
-		testingArray.add(new BorrowedBook(420, 13, 69,  new Date(), false));
-		testingArray.add(new BorrowedBook(1337, 21, 12,  new Date(2021, 12, 3), false));
 		this.books = FXCollections.observableArrayList(testingArray);
 
 		userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -47,12 +47,19 @@ public class AdminViewWantedBooksController implements Initializable {
 		date.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
 
 		tableBooks.setItems(books);
+		refreshList();
 		this.addButtonsToTableView();
 	}
-
+	private void refreshList() {
+		books.clear();
+		var bookArrayList = GetBorrowedBooks.Request(null, false);
+		if (bookArrayList != null) {
+			books.addAll(bookArrayList);
+		}
+	}
 	@FXML
 	void onRefreshClick(ActionEvent event) {
-		System.out.println("Borrowed books should be refreshed...");
+		refreshList();
 	}
 
 	private void addButtonsToTableView() {
@@ -60,6 +67,8 @@ public class AdminViewWantedBooksController implements Initializable {
 	}
 
 	private void acknowledgeBook(BorrowedBook book) {
-		System.out.println("The BorrowedBook should have 'acknowledge' set to true in the BORROW table");
+		int res = AcknowledgeBorrow.Request(book.getBorrowedID());
+		//TODO some exception handling myb
+		refreshList();
 	}
 }

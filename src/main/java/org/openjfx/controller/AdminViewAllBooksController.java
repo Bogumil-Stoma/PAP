@@ -11,7 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.openjfx.database.Book;
-import org.openjfx.requests.GetBook;
+import org.openjfx.requests.AddBorrowedBook;
+import org.openjfx.requests.GetBooks;
 import org.openjfx.requests.RemoveBook;
 
 import java.net.URL;
@@ -58,8 +59,9 @@ public class AdminViewAllBooksController implements Initializable {
 	}
 
 	private void refreshList(String text) {
+		// if text == null, then return all rows, if not, return rows similar to text
 		books.clear();
-		var bookArrayList = GetBook.Request(text);
+		var bookArrayList = GetBooks.Request(text);
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -68,6 +70,7 @@ public class AdminViewAllBooksController implements Initializable {
 	@FXML
 	void onRefreshClick(ActionEvent event) {
 		this.refreshList(null);
+		AddBorrowedBook.Request(1,1);
 	}
 
 	@FXML
@@ -98,6 +101,7 @@ public class AdminViewAllBooksController implements Initializable {
 		catch (Exception e) {
 			System.out.println("error with executing sql");
 		}
+		refreshList(null);
 	}
 
 	private void addAmount(Book book) {

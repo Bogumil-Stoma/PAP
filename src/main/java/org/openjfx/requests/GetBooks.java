@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.openjfx.database.Book;
-public class GetBook extends Request{
+public class GetBooks extends Request{
 
 
 	public static ArrayList<Book> Request(String text) {
@@ -25,6 +25,7 @@ public class GetBook extends Request{
 		try (ResultSet result = executeRequest(query)){
 			while (result.next()) {
 				var bookID = result.getString(1);
+				System.out.println(bookID);
 				var title = result.getString(2);
 				var author = result.getString(3);
 				var category = result.getString(4);

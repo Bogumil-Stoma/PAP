@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import org.openjfx.database.Book;
 
 import javafx.collections.FXCollections;
@@ -13,12 +15,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.openjfx.requests.GetBook;
-
+import org.openjfx.requests.GetBooks;
 
 public class UViewBorrowedBooksController  implements Initializable {
 	@FXML
 	private TableView<Book> tableBooks;
+	@FXML
+	private TableColumn<Book, Integer> bookId;
 	@FXML
 	private TableColumn<Book, String> title;
 	@FXML
@@ -27,6 +30,12 @@ public class UViewBorrowedBooksController  implements Initializable {
 	private TableColumn<Book, String> category;
 	@FXML
 	private TableColumn<Book, Integer> rating;
+	@FXML
+	private TableColumn<?, ?> ifLoanable;
+	@FXML
+	private TableColumn<?, ?> price;
+	@FXML
+	private TableColumn<Book, Void> modifyRow;
 	@FXML
 	private TableColumn<Book, Void> removeRow;
 
@@ -40,14 +49,14 @@ public class UViewBorrowedBooksController  implements Initializable {
 		rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
 		tableBooks.setItems(books);
-		refreshList();
+		refreshList(null);
 
 		this.addButtonsToTableView();
 	}
 
-	private void refreshList() {
+	private void refreshList(String text) {
 		books.clear();
-		var bookArrayList = GetBook.Request(null);
+		var bookArrayList = GetBooks.Request(text);
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -55,11 +64,48 @@ public class UViewBorrowedBooksController  implements Initializable {
 
 	@FXML
 	void onRefreshClick(ActionEvent event) {
-		this.refreshList();
+		this.refreshList(null);
 	}
 
 	private void addButtonsToTableView() {
-		removeRow.setCellFactory(Utils.createButtonInsideTableColumn("Remove", book -> removeBook(book)));
+		modifyRow.setCellFactory(param -> new TableCell<>() {
+			private final Button btn = new Button("Modify");
+
+			{
+				btn.setOnAction(event -> {
+					Book book = getTableView().getItems().get(getIndex());
+					modifyBook(book);
+				});
+			}
+
+			@Override
+			protected void updateItem(Void item, boolean empty) {
+				super.updateItem(item, empty);
+				setGraphic(empty ? null : btn);
+			}
+		});
+
+		removeRow.setCellFactory(param -> new TableCell<>() {
+			private final Button btn = new Button("Remove");
+
+			{
+				btn.setOnAction(event -> {
+					Book book = getTableView().getItems().get(getIndex());
+					removeBook(book);
+				});
+			}
+
+			@Override
+			protected void updateItem(Void item, boolean empty) {
+				super.updateItem(item, empty);
+				setGraphic(empty ? null : btn);
+			}
+		});
+	}
+
+	private void modifyBook(Book book) {
+		// TODO: scena do zmiany książki
+		System.out.println("dupa");
 	}
 
 	private void removeBook(Book book) {

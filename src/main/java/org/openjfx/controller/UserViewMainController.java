@@ -33,7 +33,7 @@ public class UserViewMainController {
     }
 
 	@FXML
-	void onLogOutClick(ActionEvent event) {
+	void onLogOutClick(ActionEvent event) throws IOException {
 		SceneController.singOut(event);
 	}
 }

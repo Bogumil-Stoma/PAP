@@ -3,9 +3,13 @@ package org.openjfx.database;
 import java.util.Date;
 
 public class BorrowedBook {
-	private int userId, bookId, days;
+	private int userId, bookId, days, borrowedID=-1;
 	private Date borrowDate;
 	private Boolean acknowledged;
+
+	public int getBorrowedID() {
+		return borrowedID;
+	}
 
 	public Boolean getAcknowledged() {
 		return acknowledged;
@@ -27,7 +31,8 @@ public class BorrowedBook {
 		return userId;
 	}
 
-	public BorrowedBook(int bookId, int userId, int days, Date date, Boolean acknowledged) {
+	public BorrowedBook(int borrowedID, int bookId, int userId, int days, Date date, Boolean acknowledged) {
+		this.borrowedID = borrowedID;
 		this.bookId = bookId;
 		this.userId = userId;
 		this.days = days;
