@@ -39,3 +39,7 @@ Aplikacja desktopowa opcjonalnie z bazą danych
 - lista wypożyczonych książek
 - powiadomienia
 - lista życzeń (jest do tego oddzielna tabela)
+
+
+w bazach danych
+-dodać kolumne amount (int)
