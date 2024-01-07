@@ -69,6 +69,7 @@ public class Database {
 					  "user_id INT NOT NULL," +
 					  "book_id INT NOT NULL," +
 					  "days INT CHECK (days > 0)," +
+					  "wish_date DATE NOT NULL DEFAULT CURRENT_DATE," +
 					  "FOREIGN KEY (user_id) REFERENCES \"USER\"(user_id) ON DELETE CASCADE," +
 					  "FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE)");
 
@@ -122,10 +123,10 @@ public class Database {
 					  "VALUES ('The Fountainhead', 'Ayn Rand', 'Philosophical Fiction', 3, 7)");
 
 
+		executeUpdate("INSERT INTO WISH (user_id, book_id, days, wish_date) " +
+					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Franek'), 6, 7, '2020-12-12')");
 		executeUpdate("INSERT INTO WISH (user_id, book_id, days) " +
-					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Franek'), 6, 7)");
-		executeUpdate("INSERT INTO WISH (user_id, book_id, days) " +
-					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Franek'), 9, 5)");
+					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Franek'), 6, 5)");
 
 		executeUpdate("INSERT INTO WISH (user_id, book_id, days) " +
 					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Seba'), 8, 5)");
@@ -145,8 +146,8 @@ public class Database {
 
 		executeUpdate("INSERT INTO BORROW (user_id, book_id, days, acknowledged) " +
 					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Franek'), 3, 14, true)");
-		executeUpdate("INSERT INTO BORROW (user_id, book_id, days, acknowledged) " +
-					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Franek'), 1, 7, false)");
+		executeUpdate("INSERT INTO BORROW (user_id, book_id, days, acknowledged, borrow_date) " +
+					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Franek'), 1, 7, false, '2020-12-12')");
 
 		executeUpdate("INSERT INTO BORROW (user_id, book_id, days, acknowledged) " +
 					  "VALUES ((SELECT user_id FROM \"USER\" WHERE login = 'Seba'), 5, 10, false)");
