@@ -31,7 +31,7 @@ public class SceneController {
 	}
 
 	public static void switchScenes(ActionEvent event, String fxmlFileName) throws IOException {
-		System.out.println("\n\nSwitching scene to "+ fxmlFileName);
+//		System.out.println("\n\nSwitching scene to "+ fxmlFileName);
 		Node node = (Node) event.getSource();
 		Stage stage = (Stage) node.getScene().getWindow();
 		Scene scene = SceneController.getSceneFromFxml(fxmlFileName);
@@ -40,7 +40,7 @@ public class SceneController {
 	}
 
 	public static void switchScenes(ActionEvent event, String fxmlFileName, String cssPath) throws IOException {
-		System.out.println("\n\nSwitching scene to "+ fxmlFileName);
+//		System.out.println("\n\nSwitching scene to "+ fxmlFileName);
 		Node node = (Node) event.getSource();
 		Stage stage = (Stage) node.getScene().getWindow();
 		Scene scene = SceneController.getSceneFromFxml(fxmlFileName);

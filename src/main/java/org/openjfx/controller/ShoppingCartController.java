@@ -24,12 +24,12 @@ public class ShoppingCartController {
 
 	@FXML
 	void onBuyClick(ActionEvent event) {
-		System.out.println("Buy clicked");
+//		System.out.println("Buy clicked");
 	}
 
 	@FXML
 	void onGoBackClick(ActionEvent event) {
-		System.out.println("Go back clicked");
+//		System.out.println("Go back clicked");
 	}
 
 }

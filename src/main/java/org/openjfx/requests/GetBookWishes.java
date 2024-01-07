@@ -10,7 +10,7 @@ public class GetBookWishes extends Request {
 	public static ArrayList<Wish> request(Book book) {
 		String query = "SELECT * FROM WISH " +
 					   "WHERE book_id = %d ";
-		query = String.format(query, book.getID());
+		query = String.format(query, book.getId());
 		ResultSet result = executeRequest(query);
 		return GetWishes.fromResult(result);
 	}

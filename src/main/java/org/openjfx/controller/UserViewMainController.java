@@ -23,7 +23,7 @@ public class UserViewMainController {
 		for (var tabData : GetTabs.request(SceneController.getCurrentUser())) {
 			try {
 				var tab = new Tab(tabData.TabName());
-				System.out.println(String.format("'%s'\n'%s'\n", tabData.TabName(), tabData.ViewFileName()));
+//				System.out.println(String.format("'%s'\n'%s'\n", tabData.TabName(), tabData.ViewFileName()));
 				tab.setContent(SceneController.getParentFromFxml(tabData.ViewFileName()));
 				tab.setClosable(false);
 				tabPane.getTabs().add(tab);

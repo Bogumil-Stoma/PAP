@@ -2,6 +2,7 @@ package org.openjfx.database;
 
 import java.time.LocalDate;
 import java.sql.Date;
+import java.util.Calendar;
 
 public class Borrow {
 	private int id;
@@ -24,11 +25,16 @@ public class Borrow {
 		this(id, userId, bookId, days, borrowDate.toLocalDate(), acknowledged);
 	}
 
-	public int getID() { return id; }
-	public int getUserID() { return userId; }
-	public int getBookID() { return bookId; }
+	public int getId() { return id; }
+	public int getUserId() { return userId; }
+	public int getBookId() { return bookId; }
 	public int getDays() { return days; }
 	public LocalDate getBorrowDate() { return borrowDate; }
 	public LocalDate getReturnDate() { return borrowDate.plusDays(days); }
 	public Boolean getAcknowledged() { return acknowledged; }
+
+	public Boolean isBorrowLate(){
+		return getReturnDate().isAfter( LocalDate.now() );
+	}
+
 }

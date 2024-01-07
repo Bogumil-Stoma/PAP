@@ -1,5 +1,7 @@
 package org.openjfx.database;
 
+import org.openjfx.requests.GetBook;
+
 public class Wish {
 	private int id;
 	private int userId;
@@ -14,8 +16,14 @@ public class Wish {
 		this.days = days;
 	}
 
-	public int getID() { return id; }
-	public int getUserID() { return userId; }
-	public int getBookID() { return bookId; }
+	public int getId() { return id; }
+
+	public int getUserId() { return userId; }
+	public int getBookId() { return bookId; }
+
 	public int getDays() { return days; }
+
+	public boolean isWishDoable() {
+		return GetBook.fromWish(this).getAmount()>0;
+	}
 }

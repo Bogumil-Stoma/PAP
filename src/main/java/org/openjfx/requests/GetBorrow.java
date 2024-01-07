@@ -11,17 +11,19 @@ import org.openjfx.database.ErrorHandler;
 public class GetBorrow extends Request {
 	public static Borrow fromResult(ResultSet result) {
 		try {
-			if(!result.next()) {
+			if (!result.next()) {
+//				System.out.println("ResultSet is empty");
 				return null;
+			} else {
+				// Continue processing the ResultSet
+				var id =result.getInt(1);
+				var userId = result.getInt(2);
+				var bookId = result.getInt(3);
+				var BorrowDate = result.getInt(4);
+				var LocalDate = result.getDate(5);
+				var ack = result.getBoolean(6);
+				return new Borrow(id, userId, bookId, BorrowDate, LocalDate, ack);
 			}
-			return new Borrow(
-				result.getInt(1),
-				result.getInt(2),
-				result.getInt(3),
-				result.getInt(4),
-				result.getDate(5),
-				result.getBoolean(6)
-			);
 		} catch(SQLException e) {
 			new ErrorHandler(e);
 			return null;
@@ -32,7 +34,7 @@ public class GetBorrow extends Request {
 		String query = "SELECT * FROM BORROW " +
 					   "WHERE user_id = %d " +
 					   "AND book_id = %d ";
-		query = String.format(query, user.getID(), book.getID());
+		query = String.format(query, user.getID(), book.getId());
 		ResultSet result = executeRequest(query);
 		return fromResult(result);
 	}
@@ -46,6 +48,6 @@ public class GetBorrow extends Request {
 	}
 
 	public static Borrow request(Borrow borrow) {
-		return request(borrow.getID());
+		return request(borrow.getId());
 	}
 }

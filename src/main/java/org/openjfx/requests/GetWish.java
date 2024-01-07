@@ -30,7 +30,7 @@ public class GetWish extends Request {
 		String query = "SELECT * FROM WISH " +
 					   "WHERE user_id = %d " +
 					   "AND book_id = %d ";
-		query = String.format(query, user.getID(), book.getID());
+		query = String.format(query, user.getID(), book.getId());
 		ResultSet result = executeRequest(query);
 		return fromResult(result);
 	}
@@ -44,7 +44,7 @@ public class GetWish extends Request {
 	}
 
 	public static Wish request(Wish wish) {
-		return request(wish.getID());
+		return request(wish.getId());
 	}
 }
 

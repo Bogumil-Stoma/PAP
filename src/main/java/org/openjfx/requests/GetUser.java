@@ -55,10 +55,10 @@ public class GetUser extends Request {
 	}
 
 	public static User fromWish(Wish wish) {
-		return request(wish.getUserID());
+		return request(wish.getUserId());
 	}
 
 	public static User fromBorrow(Borrow borrow) {
-		return request(borrow.getUserID());
+		return request(borrow.getUserId());
 	}
 }

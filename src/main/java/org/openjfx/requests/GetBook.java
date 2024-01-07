@@ -46,15 +46,15 @@ public class GetBook extends Request {
 	}
 
 	public static Book request(Book book) {
-		return request(book.getID());
+		return request(book.getId());
 	}
 
 	public static Book fromWish(Wish wish) {
-		return request(wish.getBookID());
+		return request(wish.getBookId());
 	}
 
 	public static Book fromBorrow(Borrow borrow) {
-		return request(borrow.getBookID());
+		return request(borrow.getBookId());
 	}
 }
 

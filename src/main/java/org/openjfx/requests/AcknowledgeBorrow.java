@@ -10,7 +10,7 @@ public class AcknowledgeBorrow extends Request {
 		String query = "UPDATE BORROW " +
 					   "SET acknowledged = true " +
 					   "WHERE borrow_id = %d ";
-		query = String.format(query, borrow.getID());
+		query = String.format(query, borrow.getId());
 		int result = executeUpdate(query);
 		if(result == 1) {
 			return GetBorrow.request(borrow);
