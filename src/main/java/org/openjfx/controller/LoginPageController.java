@@ -50,7 +50,7 @@ public class LoginPageController {
 			return;
 		}
 
-		SceneController.singIn(event, user);
+		SceneController.signIn(event, user);
 	}
 
 	@FXML

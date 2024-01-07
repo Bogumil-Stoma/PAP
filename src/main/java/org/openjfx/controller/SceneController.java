@@ -49,7 +49,7 @@ public class SceneController {
 		stage.show();
 	}
 
-	public static void singIn(ActionEvent event, User user) {
+	public static void signIn(ActionEvent event, User user) {
 		try {
 			System.out.println(user.getLogin());
 			currentUser = user;
@@ -57,18 +57,18 @@ public class SceneController {
 		}
 		catch (IOException e) {
 			currentUser = null;
-			System.out.println("\n\nCould not singIn\nerror:\n" + e);
+			System.out.println("\n\nCould not signIn\nerror:\n" + e);
 		}
 	}
 
-	public static void singOut(ActionEvent event) {
+	public static void signOut(ActionEvent event) {
 		currentUser = null;
 		try {
 			SceneController.switchScenes(event, "login", "css/login.css");
 			currentUser = null;
 		}
 		catch (IOException e) {
-			System.out.println("\n\nCould not singOut\nerror:\n" + e);
+			System.out.println("\n\nCould not signOut\nerror:\n" + e);
 		}
 	}
 
