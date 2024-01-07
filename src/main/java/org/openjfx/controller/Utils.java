@@ -2,9 +2,7 @@ package org.openjfx.controller;
 
 import java.util.function.Consumer;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 
 public class Utils {
@@ -27,5 +25,37 @@ public class Utils {
 			}
 		};
 	}
+	static class RowStyler<T> {
+
+		public static <T> void styleRows(TableView<T> tableView, ConditionChecker<T> conditionChecker) {
+			tableView.setRowFactory(row -> new RowStyler<T>().new StyledRow<>(conditionChecker));
+		}
+
+		interface ConditionChecker<T> {
+			boolean checkCondition(T item);
+		}
+
+		class StyledRow<U> extends TableRow<U> {
+			private final ConditionChecker<U> conditionChecker;
+			StyledRow(ConditionChecker<U> conditionChecker) {
+				this.conditionChecker = conditionChecker;
+			}
+
+			@Override
+			protected void updateItem(U item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item == null || empty) {
+					setStyle("");
+				} else {
+					if (conditionChecker.checkCondition(item)) {
+						setStyle("-fx-background-color: lightgreen;");
+					} else {
+						setStyle("-fx-background-color: lightcoral;");
+					}
+				}
+			}
+		}
+	}
+
 }
 

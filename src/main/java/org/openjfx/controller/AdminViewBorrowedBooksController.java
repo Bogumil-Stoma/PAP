@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import org.openjfx.database.Borrow;
+import org.openjfx.requests.ChangeBookAmount;
 import org.openjfx.requests.DelBorrow;
 import org.openjfx.requests.GetBorrows;
 
@@ -58,6 +59,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		refreshList();
 
 		this.addButtonsToTableView();
+		Utils.RowStyler.styleRows(tableBooks, Borrow::isBorrowLate);
 	}
 
 	private void refreshList() {
@@ -86,7 +88,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		if (txtSearch.getText().isEmpty())
 			return;
 
-		System.out.println("I want to see borrowed books which titles contain the word: " + txtSearch.getText().toLowerCase());
+//		System.out.println("I want to see borrowed books which titles contain the word: " + txtSearch.getText().toLowerCase());
 		refreshList(txtSearch.getText().toLowerCase());
 
 		txtSearch.clear();
@@ -98,7 +100,8 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	}
 
 	private void removeBook(Borrow borrow) {
-		System.out.println("The BorrowedBook should be marked as returned (removed)");
+//		System.out.println("The BorrowedBook should be marked as returned (removed)");
+		ChangeBookAmount.request(borrow.getBookId(), 1);
 		var deleted = DelBorrow.request(borrow);
 		refreshList();
 	}

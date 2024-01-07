@@ -46,6 +46,7 @@ public class AdminViewWantedBooksController implements Initializable {
 		tableBooks.setItems(books);
 		refreshList();
 		this.addButtonsToTableView();
+		Utils.RowStyler.styleRows(tableBooks, wishedBook -> wishedBook.isWishDoable());
 	}
 	private void refreshList() {
 		books.clear();
@@ -64,7 +65,7 @@ public class AdminViewWantedBooksController implements Initializable {
 	}
 
 	private void acknowledgeBook(Wish wish) {
-		var book = GetBook.request(wish.getBookID());
+		var book = GetBook.request(wish.getBookId());
 		int amount = book.getAmount();
 		if (amount > 0) {
 			var borrow = AcceptWish.request(wish);
