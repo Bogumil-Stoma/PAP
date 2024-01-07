@@ -67,7 +67,6 @@ public class AdminViewWantedBooksController implements Initializable {
 		var book = GetBook.request(wish.getBookID());
 		int amount = book.getAmount();
 		if (amount > 0) {
-			ChangeBookAmount.request(book, -1);
 			var borrow = AcceptWish.request(wish);
 			//TODO some exception handling myb
 			refreshList();
