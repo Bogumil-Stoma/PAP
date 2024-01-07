@@ -33,7 +33,7 @@ public class AdminViewAllBooksController implements Initializable {
 	@FXML
 	private TableColumn<Book, Integer> rating;
 	@FXML
-	private TableColumn<?, ?> amount;
+	private TableColumn<Book, Integer> amount;
 	@FXML
 	private TableColumn<Book, Void> removeRow;
 	@FXML
@@ -49,6 +49,7 @@ public class AdminViewAllBooksController implements Initializable {
 		author.setCellValueFactory(new PropertyValueFactory<>("author"));
 		category.setCellValueFactory(new PropertyValueFactory<>("category"));
 		rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+		amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
 		tableBooks.setItems(books);
 		refreshList(null);

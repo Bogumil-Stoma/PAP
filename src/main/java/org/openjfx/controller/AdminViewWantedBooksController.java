@@ -26,8 +26,6 @@ public class AdminViewWantedBooksController implements Initializable {
 	@FXML
 	private TableColumn<WishedBook, Integer> days;
 	@FXML
-	private TableColumn<WishedBook, Date> date;
-	@FXML
 	private TableColumn<WishedBook, Void> acceptBook;
 	@FXML
 	private TableView<WishedBook> tableBooks;
@@ -44,7 +42,6 @@ public class AdminViewWantedBooksController implements Initializable {
 		userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		bookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
 		days.setCellValueFactory(new PropertyValueFactory<>("days"));
-		date.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
 
 		tableBooks.setItems(books);
 		refreshList();

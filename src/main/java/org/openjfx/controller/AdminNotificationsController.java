@@ -1,5 +1,6 @@
 package org.openjfx.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -23,5 +24,10 @@ public class AdminNotificationsController implements Initializable {
 		notification1.setText("4 książki czekają na twoje zaakceptowanie");
 		notification2.setText("Aktualnie są 2 książki wypożyczone");
 		notification3.setText("Liczba dostępnych niewypożyczonych książek to 0");
+	}
+
+	@FXML
+	void onRefreshClick(ActionEvent event) {
+		System.out.println("Here notifications should be refreshed");
 	}
 }
