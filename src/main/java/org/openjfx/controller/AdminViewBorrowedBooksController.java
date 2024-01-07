@@ -1,5 +1,14 @@
 package org.openjfx.controller;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+import org.openjfx.database.Borrow;
+import org.openjfx.requests.DelBorrow;
+import org.openjfx.requests.GetBorrows;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,16 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import org.openjfx.database.BorrowedBook;
-import org.openjfx.requests.GetBooks;
-import org.openjfx.requests.GetBorrowedBooks;
-import org.openjfx.requests.RemoveBook;
-import org.openjfx.requests.RemoveBorrowedBook;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.ResourceBundle;
 
 
 public class AdminViewBorrowedBooksController implements Initializable {
@@ -28,25 +27,25 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	@FXML
 	private TextField txtSearch;
 	@FXML
-	private TableColumn<BorrowedBook, Integer> userId;
+	private TableColumn<Borrow, Integer> userId;
 	@FXML
-	private TableColumn<BorrowedBook, Integer> bookId;
+	private TableColumn<Borrow, Integer> bookId;
 	@FXML
-	private TableColumn<BorrowedBook, Integer> days;
+	private TableColumn<Borrow, Integer> days;
 	@FXML
-	private TableColumn<BorrowedBook, Date> date;
+	private TableColumn<Borrow, Date> date;
 	@FXML
-	private TableColumn<BorrowedBook, Void> returnBook;
+	private TableColumn<Borrow, Void> returnBook;
 	@FXML
-	private TableView<BorrowedBook> tableBooks;
+	private TableView<Borrow> tableBooks;
 
-	private ObservableList<BorrowedBook> books = FXCollections.observableArrayList();
+	private ObservableList<Borrow> books = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 //		System.out.println("Here we should see books from BORROW table which have 'acknowledge' set to true");
 
-		ArrayList<BorrowedBook> testingArray = new ArrayList<>();
+		ArrayList<Borrow> testingArray = new ArrayList<>();
 		this.books = FXCollections.observableArrayList(testingArray);
 
 		userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -56,15 +55,22 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 
 		tableBooks.setItems(books);
-		refreshList(null);
+		refreshList();
 
 		this.addButtonsToTableView();
 	}
 
-	private void refreshList(String text) {
-		// if text == null, then return all rows, if not, return rows similar to text
+	private void refreshList() {
 		books.clear();
-		var bookArrayList = GetBorrowedBooks.Request(text, true);
+		var bookArrayList = GetBorrows.request();
+		if (bookArrayList != null) {
+			books.addAll(bookArrayList);
+		}
+	}
+
+	private void refreshList(String text) {
+		books.clear();
+		var bookArrayList = GetBorrows.request(text);
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -72,7 +78,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 	@FXML
 	void onRefreshClick(ActionEvent event) {
-		this.refreshList(null);
+		this.refreshList();
 	}
 
 	@FXML
@@ -81,6 +87,8 @@ public class AdminViewBorrowedBooksController implements Initializable {
 			return;
 
 		System.out.println("I want to see borrowed books which titles contain the word: " + txtSearch.getText().toLowerCase());
+		refreshList(txtSearch.getText().toLowerCase());
+
 		txtSearch.clear();
 		vbox.requestFocus(); // take away focus from txtSearch TextField
 	}
@@ -89,9 +97,9 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		returnBook.setCellFactory(Utils.createButtonInsideTableColumn("Returned", book -> removeBook(book)));
 	}
 
-	private void removeBook(BorrowedBook book) {
+	private void removeBook(Borrow borrow) {
 		System.out.println("The BorrowedBook should be marked as returned (removed)");
-		var res = RemoveBorrowedBook.Request(book.getBorrowedID(), book.getBookId());
-		refreshList(null);
+		var deleted = DelBorrow.request(borrow);
+		refreshList();
 	}
 }

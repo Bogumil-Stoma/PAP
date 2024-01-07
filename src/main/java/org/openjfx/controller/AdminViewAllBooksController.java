@@ -1,5 +1,13 @@
 package org.openjfx.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import org.openjfx.database.Book;
+import org.openjfx.requests.ChangeBookAmount;
+import org.openjfx.requests.DelBook;
+import org.openjfx.requests.GetBooks;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,11 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import org.openjfx.database.Book;
-import org.openjfx.requests.*;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class AdminViewAllBooksController implements Initializable {
@@ -52,15 +55,22 @@ public class AdminViewAllBooksController implements Initializable {
 		amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
 		tableBooks.setItems(books);
-		refreshList(null);
+		refreshList();
 
 		this.addButtonsToTableView();
 	}
 
-	private void refreshList(String text) {
-		// if text == null, then return all rows, if not, return rows similar to text
+	private void refreshList() {
 		books.clear();
-		var bookArrayList = GetBooks.Request(text);
+		var bookArrayList = GetBooks.request();
+		if (bookArrayList != null) {
+			books.addAll(bookArrayList);
+		}
+	}
+
+	private void refreshList(String text) {
+		books.clear();
+		var bookArrayList = GetBooks.request(text);
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -68,7 +78,7 @@ public class AdminViewAllBooksController implements Initializable {
 
 	@FXML
 	void onRefreshClick(ActionEvent event) {
-		this.refreshList(null);
+		this.refreshList();
 	}
 
 	@FXML
@@ -90,8 +100,8 @@ public class AdminViewAllBooksController implements Initializable {
 
 	private void removeBook(Book book) {
 		try {
-			var result = RemoveBook.Request(book.getBookID());
-			if (result == 1)
+			var deleted = DelBook.request(book);
+			if (deleted)
 				System.out.println("book was removed");
 			else
 				System.out.println("error with wrong book id");
@@ -99,19 +109,19 @@ public class AdminViewAllBooksController implements Initializable {
 		catch (Exception e) {
 			System.out.println("error with executing sql");
 		}
-		refreshList(null);
+		refreshList();
 	}
 
 	private void addAmount(Book book) {
-		ChangeBookAmount.Request(1, book.getBookID());
+		ChangeBookAmount.request(book, 1);
 		System.out.println(book.getAmount());
-		refreshList(null);
+		refreshList();
 	}
 
 	private void subtractAmount(Book book) {
 		if (book.getAmount() > 0) {
-			ChangeBookAmount.Request(-1, book.getBookID());
-			refreshList(null);
+			ChangeBookAmount.request(book, -1);
+			refreshList();
 		}
 		else
 			System.out.println("cant decrement");

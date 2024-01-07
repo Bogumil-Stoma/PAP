@@ -1,17 +1,18 @@
 package org.openjfx.requests;
 
-import org.openjfx.database.BorrowedBook;
+import org.openjfx.database.Book;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static org.openjfx.requests.Request.executeUpdate;
-
-public class ChangeBookAmount {
-	public static int Request(int how_much, int book_id) {
-		String query = "UPDATE BOOK set amount=amount+(%d) where book_id=%d";
-		query = String.format(query, how_much, book_id);
+public class ChangeBookAmount extends Request {
+	public static Book request(Book book, int delta) {
+		String query = "UPDATE BOOK " +
+					   "SET amount = amount + (%d) " +
+					   "WHERE book_id = %d ";
+		query = String.format(query, delta, book.getID());
 		int result = executeUpdate(query);
-		return 1;
+		if(result == 1) {
+			return GetBook.request(book);
+		} else {
+			return null;
+		}
 	}
 }

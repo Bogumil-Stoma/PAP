@@ -1,14 +1,15 @@
 package org.openjfx.controller;
 
+import java.io.IOException;
+
+import org.openjfx.requests.AddUser;
+import org.openjfx.requests.GetUser;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
-
-import org.openjfx.requests.TryCreateUser;
 
 
 public class RegisterController {
@@ -36,11 +37,12 @@ public class RegisterController {
 	private void onRegisterClick(ActionEvent event) {
 		this.signaliseIfNoInput();
 
-		var user = TryCreateUser.Execute(txtLogin.getText(), txtPassword.getText());
+		var user = GetUser.request(txtLogin.getText());
 		if (user != null)
-			System.out.println(user.getLogin());
-		else
 			System.out.println("Login is already taken");
+		else
+			user = AddUser.request(txtLogin.getText(), txtPassword.getText());
+			System.out.println(user.getLogin());
 
 		System.out.println("Login: " + txtLogin.getText());
 		System.out.println("Password: " + txtPassword.getText());

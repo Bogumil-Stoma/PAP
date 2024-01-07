@@ -1,52 +1,54 @@
 package org.openjfx.requests;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.openjfx.database.Book;
-public class GetBooks extends Request{
+import org.openjfx.database.Borrow;
+import org.openjfx.database.Wish;
 
-	private static ArrayList<Book> SetBook(ArrayList<Book> books, String query) {
-		try (ResultSet result = executeRequest(query)) {
-			while (result.next()) {
-				var bookID = result.getInt(1);
-				var title = result.getString(2);
-				var author = result.getString(3);
-				var category = result.getString(4);
-				var rating = result.getInt(5);
-				var amount = result.getInt(6);
-				books.add(new Book(bookID, title, author, category, rating, amount));
-			}
-			return books;
-		} catch (SQLException e) {
-			new Exception(e);
-			return null;
+public class GetBooks extends Request {
+	public static ArrayList<Book> fromResult(ResultSet result) {
+		ArrayList<Book> books = new ArrayList<Book>();
+		Book book;
+		while((book = GetBook.fromResult(result)) != null) {
+			books.add(book);
 		}
+		return books;
 	}
-	public static ArrayList<Book> Request(String text) {
-		var books = new ArrayList<Book>();
-		var query = "SELECT * FROM \"BOOK\"";
 
-		if (text!=null){
-			query = "SELECT * FROM BOOK " +
-					"WHERE DIFFERENCE(TITLE, '%s') > 2 " +
-					"OR DIFFERENCE(AUTHOR, '%s') > 2 " +
-					"OR DIFFERENCE(CATEGORY, '%s') = 4 " +
-					"ORDER BY DIFFERENCE(TITLE, '%s') + DIFFERENCE(AUTHOR, '%s') + DIFFERENCE(CATEGORY, '%s') DESC";
+	public static ArrayList<Book> request() {
+		String query = "SELECT * FROM BOOK ";
+		ResultSet result = executeRequest(query);
+		return fromResult(result);
+	}
 
-			query = String.format(query, text, text, text, text, text, text);
+	public static ArrayList<Book> request(String search) {
+		String query = "SELECT * FROM BOOK " +
+					   "WHERE DIFFERENCE(title, '%s') > 2 " +
+					   "OR DIFFERENCE(author, '%s') > 2 " +
+					   "OR DIFFERENCE(category, '%s') = 4 " +
+					   "ORDER BY DIFFERENCE(title, '%s') + DIFFERENCE(author, '%s') + DIFFERENCE(category, '%s') DESC";
+		query = String.format(query, search, search, search, search, search, search);
+		ResultSet result = executeRequest(query);
+		return fromResult(result);
+	}
 
+	public static ArrayList<Book> fromWishes(ArrayList<Wish> wishes) {
+		ArrayList<Book> books = new ArrayList<Book>();
+		for(Wish wish : wishes) {
+			Book book = GetBook.fromWish(wish);
+			books.add(book);
 		}
-		return SetBook(books, query);
+		return books;
 	}
-	public static Book Request(int bookID) {
-		var books = new ArrayList<Book>();
-		var query = "SELECT * FROM \"BOOK\" WHERE book_id=%d";
-		query = String.format(query, bookID);
 
-		return SetBook(books, query).get(0);
+	public static ArrayList<Book> fromBorrows(ArrayList<Borrow> borrows) {
+		ArrayList<Book> books = new ArrayList<Book>();
+		for(Borrow borrow : borrows) {
+			Book book = GetBook.fromBorrow(borrow);
+			books.add(book);
+		}
+		return books;
 	}
 }
-
-

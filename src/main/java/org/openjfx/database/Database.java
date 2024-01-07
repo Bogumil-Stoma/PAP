@@ -20,7 +20,7 @@ public class Database {
 			Class.forName("org.h2.Driver");
 			connection = DriverManager.getConnection("jdbc:h2:./database/main;DB_CLOSE_DELAY=-1", "sa", "");
 		} catch(ClassNotFoundException | SQLException e) {
-			new Exception(e);
+			new ErrorHandler(e);
 		}
 	}
 
@@ -181,6 +181,7 @@ public class Database {
 	 *  - str author
 	 *  - str category
 	 *  - int rating
+	 *  - int amount
 	 *
 	 * WISH:
 	 *  - int wish_id
@@ -200,7 +201,7 @@ public class Database {
 		try {
 			return connection.prepareStatement(sql).executeQuery();
 		} catch(SQLException e) {
-			new Exception(e);
+			new ErrorHandler(e);
 			return null;
 		}
 	}
@@ -218,7 +219,7 @@ public class Database {
 			connection.commit();
 			return result;
 		} catch(SQLException e) {
-			new Exception(e);
+			new ErrorHandler(e);
 			return -1;
 		}
 	}
@@ -231,7 +232,7 @@ public class Database {
 			ResultSet tables = connection.getMetaData().getTables(null, null, tableName, null);
 			return !!tables.next();
 		} catch(SQLException e) {
-			new Exception(e);
+			new ErrorHandler(e);
 			return false;
 		}
 	}
@@ -245,7 +246,7 @@ public class Database {
 				connection.close();
 			}
 		} catch(SQLException e) {
-			new Exception(e);
+			new ErrorHandler(e);
 		}
 	}
 }

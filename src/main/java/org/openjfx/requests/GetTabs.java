@@ -6,7 +6,6 @@ import java.util.List;
 import org.openjfx.database.User;
 
 public class GetTabs extends Request {
-
 	public static List<TabData> request(User usr) {
 
 		var list = new ArrayList<TabData>();

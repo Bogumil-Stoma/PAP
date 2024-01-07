@@ -1,12 +1,13 @@
 package org.openjfx.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import java.io.IOException;
 
 import org.openjfx.requests.GetTabs;
 
-import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 
 public class UserViewMainController {
 
@@ -22,6 +23,7 @@ public class UserViewMainController {
 		for (var tabData : GetTabs.request(SceneController.getCurrentUser())) {
 			try {
 				var tab = new Tab(tabData.TabName());
+				System.out.println(String.format("'%s'\n'%s'\n", tabData.TabName(), tabData.ViewFileName()));
 				tab.setContent(SceneController.getParentFromFxml(tabData.ViewFileName()));
 				tab.setClosable(false);
 				tabPane.getTabs().add(tab);

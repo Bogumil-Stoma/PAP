@@ -1,13 +1,18 @@
 package org.openjfx.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import org.openjfx.requests.AddBook;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import org.openjfx.requests.AddBook;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 
 public class AdminViewAddBookController implements Initializable {
 
@@ -47,7 +52,12 @@ public class AdminViewAddBookController implements Initializable {
 		System.out.println();
 
 		try {
-			var book = AddBook.Request(txtTitle.getText(), txtAuthor.getText(), txtCategory.getText(), ratingChoiceBox.getValue());
+			var book = AddBook.request(
+				txtTitle.getText(),
+				txtAuthor.getText(),
+				txtCategory.getText(),
+				ratingChoiceBox.getValue(),
+				amount.getValue());
 			if (book != null)
 				labelInfo.setText(book.getTitle() + " was added...");
 			else

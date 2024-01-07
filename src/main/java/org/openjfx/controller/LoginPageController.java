@@ -1,12 +1,16 @@
 package org.openjfx.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-
 import java.io.IOException;
 
 import org.openjfx.requests.GetUser;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 public class LoginPageController {
 	@FXML
@@ -44,7 +48,7 @@ public class LoginPageController {
 		System.out.println("Hey, I'm signing in here!");
 		this.printTestInfo();
 
-		var user = GetUser.Request(txtLogin.getText(), txtPassword.getText());
+		var user = GetUser.request(txtLogin.getText(), txtPassword.getText());
 		if (user == null) {
 			System.out.println("Incorrect login or password");
 			return;

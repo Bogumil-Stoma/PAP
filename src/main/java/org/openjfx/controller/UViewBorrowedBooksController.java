@@ -3,19 +3,20 @@ package org.openjfx.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import org.openjfx.database.Book;
+import org.openjfx.requests.GetBooks;
+import org.openjfx.requests.GetBorrows;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.openjfx.requests.GetBooks;
 
 public class UViewBorrowedBooksController  implements Initializable {
 	@FXML
@@ -49,14 +50,22 @@ public class UViewBorrowedBooksController  implements Initializable {
 		rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
 		tableBooks.setItems(books);
-		refreshList(null);
+		refreshList();
 
 		this.addButtonsToTableView();
 	}
 
+	private void refreshList() {
+		books.clear();
+		var bookArrayList = GetBooks.fromBorrows(GetBorrows.request());
+		if (bookArrayList != null) {
+			books.addAll(bookArrayList);
+		}
+	}
+
 	private void refreshList(String text) {
 		books.clear();
-		var bookArrayList = GetBooks.Request(text);
+		var bookArrayList = GetBooks.fromBorrows(GetBorrows.request(text));
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -64,7 +73,7 @@ public class UViewBorrowedBooksController  implements Initializable {
 
 	@FXML
 	void onRefreshClick(ActionEvent event) {
-		this.refreshList(null);
+		this.refreshList();
 	}
 
 	private void addButtonsToTableView() {

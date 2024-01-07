@@ -1,5 +1,15 @@
 package org.openjfx.controller;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import org.openjfx.database.Wish;
+import org.openjfx.requests.AcceptWish;
+import org.openjfx.requests.ChangeBookAmount;
+import org.openjfx.requests.GetBook;
+import org.openjfx.requests.GetWishes;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,35 +18,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.openjfx.database.BorrowedBook;
-import org.openjfx.database.WishedBook;
-import org.openjfx.requests.*;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.Date;
 
 
 public class AdminViewWantedBooksController implements Initializable {
 	@FXML
-	private TableColumn<WishedBook, Integer> userId;
+	private TableColumn<Wish, Integer> userId;
 	@FXML
-	private TableColumn<WishedBook, Integer> bookId;
+	private TableColumn<Wish, Integer> bookId;
 	@FXML
-	private TableColumn<WishedBook, Integer> days;
+	private TableColumn<Wish, Integer> days;
 	@FXML
-	private TableColumn<WishedBook, Void> acceptBook;
+	private TableColumn<Wish, Void> acceptBook;
 	@FXML
-	private TableView<WishedBook> tableBooks;
+	private TableView<Wish> tableBooks;
 
-	private ObservableList<WishedBook> books = FXCollections.observableArrayList();
+	private ObservableList<Wish> books = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-//		System.out.println("Here we should see books from BORROW table which have 'acknowledge' set to false");
-
-		ArrayList<WishedBook> testingArray = new ArrayList<>();
+		ArrayList<Wish> testingArray = new ArrayList<>();
 		this.books = FXCollections.observableArrayList(testingArray);
 
 		userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -49,7 +49,7 @@ public class AdminViewWantedBooksController implements Initializable {
 	}
 	private void refreshList() {
 		books.clear();
-		var bookArrayList = GetWishedBooks.Request();
+		var bookArrayList = GetWishes.request();
 		if (bookArrayList != null) {
 			books.addAll(bookArrayList);
 		}
@@ -60,14 +60,15 @@ public class AdminViewWantedBooksController implements Initializable {
 	}
 
 	private void addButtonsToTableView() {
-		acceptBook.setCellFactory(Utils.createButtonInsideTableColumn("Accept", book -> acknowledgeBook(book)));
+		acceptBook.setCellFactory(Utils.createButtonInsideTableColumn("Accept", wish -> acknowledgeBook(wish)));
 	}
 
-	private void acknowledgeBook(WishedBook book) {
-		int amount = GetBooks.Request(book.getBookId()).getAmount();
+	private void acknowledgeBook(Wish wish) {
+		var book = GetBook.request(wish.getBookID());
+		int amount = book.getAmount();
 		if (amount > 0) {
-			var res = AcknowledgeBorrow.Request(book.getUserId(), book.getUserId());
-			RemoveWishedBook.Request(book.getWishedID());
+			ChangeBookAmount.request(book, -1);
+			var borrow = AcceptWish.request(wish);
 			//TODO some exception handling myb
 			refreshList();
 		}
