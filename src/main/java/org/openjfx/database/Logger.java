@@ -9,7 +9,7 @@ public class Logger {
 	 */
 	public static void main(String[] args) {
 		Database database = Database.getInstance();
-		ResultSet result = database.executeQuery("SELECT * FROM \"USER\"");
+		ResultSet result = database.executeQuery("SELECT * FROM BOOK");
 		System.out.println(result);
 	}
 }
