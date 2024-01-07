@@ -1,7 +1,7 @@
 package org.openjfx.database;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 public class Borrow {
 	private int id;
@@ -21,7 +21,7 @@ public class Borrow {
 	}
 
 	public Borrow(int id, int userId, int bookId, int days, Date borrowDate, Boolean acknowledged) {
-		this(id, userId, bookId, days, Convert.ToLocalDate(borrowDate), acknowledged);
+		this(id, userId, bookId, days, borrowDate.toLocalDate(), acknowledged);
 	}
 
 	public int getID() { return id; }

@@ -18,7 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class UViewBorrowedBooksController  implements Initializable {
+public class UViewBorrowedBooksController implements Initializable {
 	@FXML
 	private TableView<Book> tableBooks;
 	@FXML
