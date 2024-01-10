@@ -35,22 +35,13 @@ public class LoginPageController {
 		}
 	}
 
-	private void printTestInfo() {
-		System.out.println("Current login: " + txtLogin.getText());
-		System.out.println("Current password: " + txtPassword.getText());
-		System.out.println();
-	}
-
 	@FXML
-	private void onSingInClick(ActionEvent event) throws IOException {
+	private void onSingInClick(ActionEvent event) {
 		this.signaliseIfNoInput();
-
-		System.out.println("Hey, I'm signing in here!");
-		this.printTestInfo();
 
 		var user = GetUser.request(txtLogin.getText(), txtPassword.getText());
 		if (user == null) {
-			System.out.println("Incorrect login or password");
+			labelErrors.setText("Incorrect login or password");
 			return;
 		}
 
@@ -59,9 +50,6 @@ public class LoginPageController {
 
 	@FXML
 	private void onSignUpClick(ActionEvent event) throws IOException {
-		System.out.println("Hey, I'm signing up here!");
-		this.printTestInfo();
-
 		SceneController.switchScenes(event, "register", "css/buttons.css");
 	}
 }

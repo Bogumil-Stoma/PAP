@@ -44,13 +44,6 @@ public class AdminViewAddBookController implements Initializable {
 
 	@FXML
 	void onSubmitClick(ActionEvent event) {
-//		System.out.println("Title: " + txtTitle.getText());
-//		System.out.println("Author: " + txtAuthor.getText());
-//		System.out.println("Category: " + txtCategory.getText());
-//		System.out.println("Rating: " + ratingChoiceBox.getValue());
-//		System.out.println("Amount: " + amount.getValue());
-//		System.out.println();
-
 		try {
 			var book = AddBook.request(
 				txtTitle.getText(),

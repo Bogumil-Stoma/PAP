@@ -1,14 +1,12 @@
 package org.openjfx.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.layout.VBox;
 import org.openjfx.database.Wish;
-import org.openjfx.requests.AcceptWish;
-import org.openjfx.requests.ChangeBookAmount;
-import org.openjfx.requests.GetBook;
-import org.openjfx.requests.GetWishes;
+import org.openjfx.requests.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,14 +15,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class AdminViewWantedBooksController implements Initializable {
 	@FXML
-	private TableColumn<Wish, Integer> userId;
+	private VBox vbox;
 	@FXML
-	private TableColumn<Wish, Integer> bookId;
+	private TableColumn<Wish, String> userLogin;
+	@FXML
+	private TableColumn<Wish, String> bookName;
 	@FXML
 	private TableColumn<Wish, Integer> days;
 	@FXML
@@ -36,12 +35,9 @@ public class AdminViewWantedBooksController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		ArrayList<Wish> testingArray = new ArrayList<>();
-		this.books = FXCollections.observableArrayList(testingArray);
-
-		userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
-		bookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-		days.setCellValueFactory(new PropertyValueFactory<>("days"));
+		userLogin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(GetUser.request(cellData.getValue().getUserId()).getLogin()));
+		bookName.setCellValueFactory(cellData -> new SimpleObjectProperty<>(GetBook.request(cellData.getValue().getBookId()).getTitle()));
+		days.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDays()));
 
 		tableBooks.setItems(books);
 		refreshList();
@@ -74,5 +70,7 @@ public class AdminViewWantedBooksController implements Initializable {
 		}
 		else
 			System.out.println("not enough books in store");
+
+		vbox.requestFocus(); // take away focus
 	}
 }

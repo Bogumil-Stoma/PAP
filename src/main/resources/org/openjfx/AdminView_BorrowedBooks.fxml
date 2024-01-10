@@ -50,10 +50,10 @@
       <Separator prefHeight="27.0" prefWidth="915.0" />
       <TableView fx:id="tableBooks" focusTraversable="false">
          <columns>
-            <TableColumn fx:id="userId" maxWidth="331.19995725154877" prefWidth="80.00005757808685" style="-fx-alignment: CENTER;" text="UserId" />
-            <TableColumn fx:id="bookId" maxWidth="356.8000030517578" prefWidth="131.19996643066406" style="-fx-alignment: CENTER;" text="BookId" />
-            <TableColumn fx:id="days" maxWidth="378.39996337890625" minWidth="0.0" prefWidth="165.60003662109375" style="-fx-alignment: CENTER;" text="Days" />
-            <TableColumn fx:id="date" maxWidth="443.9998779296875" minWidth="4.0" prefWidth="266.39996337890625" style="-fx-alignment: CENTER;" text="BorrowDate" />
+            <TableColumn fx:id="userLogin" maxWidth="331.19995725154877" prefWidth="154.40003621578217" style="-fx-alignment: CENTER;" text="UserLogin" />
+            <TableColumn fx:id="bookName" maxWidth="356.8000030517578" prefWidth="279.20001220703125" style="-fx-alignment: CENTER;" text="BookName" />
+            <TableColumn fx:id="days" maxWidth="378.39996337890625" minWidth="0.0" prefWidth="94.39993286132812" style="-fx-alignment: CENTER;" text="Days" />
+            <TableColumn fx:id="date" maxWidth="443.9998779296875" minWidth="4.0" prefWidth="118.40005493164062" style="-fx-alignment: CENTER;" text="BorrowDate" />
             <TableColumn fx:id="returnBook" maxWidth="525.5999938964844" minWidth="0.0" prefWidth="144.0001220703125" sortable="false" style="-fx-alignment: CENTER;" text="Action" />
          </columns>
          <VBox.margin>
