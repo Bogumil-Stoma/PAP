@@ -20,6 +20,7 @@ public class GetTabs extends Request {
 		}
 		else {
 			list.add(new TabData("Borrowed books", "UserView_BorrowedBooks"));
+			list.add(new TabData("Borrowed books", "UserView_AvailableBooks"));
 		}
 
 		return list;

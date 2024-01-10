@@ -4,18 +4,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import org.openjfx.database.Book;
 import org.openjfx.database.Borrow;
 import org.openjfx.helpers.Filter;
 import org.openjfx.helpers.Searchable;
 import org.openjfx.requests.GetBook;
-import org.openjfx.requests.GetBooks;
-import org.openjfx.requests.GetBorrow;
 import org.openjfx.requests.GetBorrows;
 
 import javafx.beans.property.ObjectProperty;
@@ -26,8 +21,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;

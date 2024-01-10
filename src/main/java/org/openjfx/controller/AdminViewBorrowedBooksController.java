@@ -95,7 +95,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	private void removeBook(Borrow borrow) {
 //		System.out.println("The BorrowedBook should be marked as returned (removed)");
 		ChangeBookAmount.request(borrow.getBookId(), 1);
-		var deleted = DelBorrow.request(borrow);
+		DelBorrow.request(borrow);
 		refreshList();
 
 		vbox.requestFocus(); // take away focus
