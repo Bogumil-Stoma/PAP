@@ -1,14 +1,12 @@
 package org.openjfx.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleObjectProperty;
 import org.openjfx.database.Borrow;
-import org.openjfx.requests.ChangeBookAmount;
-import org.openjfx.requests.DelBorrow;
-import org.openjfx.requests.GetBorrows;
+import org.openjfx.requests.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 
@@ -28,13 +25,13 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	@FXML
 	private TextField txtSearch;
 	@FXML
-	private TableColumn<Borrow, Integer> userId;
+	private TableColumn<Borrow, String> userLogin;
 	@FXML
-	private TableColumn<Borrow, Integer> bookId;
+	private TableColumn<Borrow, String> bookName;
 	@FXML
 	private TableColumn<Borrow, Integer> days;
 	@FXML
-	private TableColumn<Borrow, Date> date;
+	private TableColumn<Borrow, LocalDate> date;
 	@FXML
 	private TableColumn<Borrow, Void> returnBook;
 	@FXML
@@ -44,15 +41,11 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-//		System.out.println("Here we should see books from BORROW table which have 'acknowledge' set to true");
 
-		ArrayList<Borrow> testingArray = new ArrayList<>();
-		this.books = FXCollections.observableArrayList(testingArray);
-
-		userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
-		bookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-		days.setCellValueFactory(new PropertyValueFactory<>("days"));
-		date.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
+		userLogin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(GetUser.request(cellData.getValue().getUserId()).getLogin()));
+		bookName.setCellValueFactory(cellData -> new SimpleObjectProperty<>(GetBook.request(cellData.getValue().getBookId()).getTitle()));
+		days.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDays()));
+		date.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getBorrowDate()));
 
 
 		tableBooks.setItems(books);
@@ -104,5 +97,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		ChangeBookAmount.request(borrow.getBookId(), 1);
 		var deleted = DelBorrow.request(borrow);
 		refreshList();
+
+		vbox.requestFocus(); // take away focus
 	}
 }

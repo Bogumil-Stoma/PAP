@@ -3,6 +3,7 @@ package org.openjfx.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleObjectProperty;
 import org.openjfx.database.Book;
 import org.openjfx.requests.ChangeBookAmount;
 import org.openjfx.requests.DelBook;
@@ -48,11 +49,11 @@ public class AdminViewAllBooksController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		title.setCellValueFactory(new PropertyValueFactory<>("title"));
-		author.setCellValueFactory(new PropertyValueFactory<>("author"));
-		category.setCellValueFactory(new PropertyValueFactory<>("category"));
-		rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
-		amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+		title.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTitle()));
+		author.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAuthor()));
+		category.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCategory()));
+		rating.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getRating()));
+		amount.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAmount()));
 
 		tableBooks.setItems(books);
 		refreshList();
@@ -110,12 +111,16 @@ public class AdminViewAllBooksController implements Initializable {
 			System.out.println("error with executing sql");
 		}
 		refreshList();
+
+		vbox.requestFocus(); // take away focus
 	}
 
 	private void addAmount(Book book) {
 		ChangeBookAmount.request(book, 1);
 		System.out.println(book.getAmount());
 		refreshList();
+
+		vbox.requestFocus(); // take away focus
 	}
 
 	private void subtractAmount(Book book) {
@@ -125,5 +130,7 @@ public class AdminViewAllBooksController implements Initializable {
 		}
 		else
 			System.out.println("cant decrement");
+
+		vbox.requestFocus(); // take away focus
 	}
 }
