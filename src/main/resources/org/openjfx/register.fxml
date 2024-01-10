@@ -58,12 +58,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Label fx:id="labelErrors" alignment="CENTER" layoutX="9.0" layoutY="130.0" prefHeight="17.0" prefWidth="500.0" textFill="#ff6354" />
+                <Label fx:id="labelErrors" alignment="CENTER" layoutY="130.0" prefHeight="17.0" prefWidth="500.0" textFill="#ff6354" />
             <PasswordField fx:id="txtPassword" layoutX="109.0" layoutY="77.0" prefHeight="30.0" prefWidth="412.0" promptText="new password">
                <font>
                   <Font size="14.0" />
                </font>
             </PasswordField>
+            <Label fx:id="labelForInfo" alignment="CENTER" layoutY="130.0" prefHeight="17.0" prefWidth="500.0" textFill="#70a150" />
             </children>
         </Pane>
     </children>
