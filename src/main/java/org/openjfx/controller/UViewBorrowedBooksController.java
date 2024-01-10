@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-
+import java.util.List;
 
 import org.openjfx.database.Book;
 import org.openjfx.database.Borrow;
+import org.openjfx.helpers.Filter;
+import org.openjfx.helpers.Searchable;
 import org.openjfx.requests.GetBook;
 import org.openjfx.requests.GetBooks;
 import org.openjfx.requests.GetBorrow;
@@ -32,14 +35,13 @@ import javafx.scene.layout.VBox;
 
 public class UViewBorrowedBooksController implements Initializable {
 
-	private class DisplayRecord
+	private class DisplayRecord implements Searchable
 	{
 		public ObjectProperty<String> title;
 		public ObjectProperty<String> author;
 		public ObjectProperty<String> category;
 		public ObjectProperty<Integer> rating;
 		public ObjectProperty<LocalDate> borrowDate;
-		public ObjectProperty<LocalDate> returnDate;
 		public ObjectProperty<Integer> daysReminded;
 
 		public DisplayRecord(Borrow borrow) {
@@ -49,11 +51,19 @@ public class UViewBorrowedBooksController implements Initializable {
 			category = new SimpleObjectProperty<>(book.getCategory());
 			rating = new SimpleObjectProperty<>(book.getRating());
 			borrowDate = new SimpleObjectProperty<>(borrow.getBorrowDate());
-			returnDate = new SimpleObjectProperty<>(borrow.getReturnDate());
 			daysReminded = new SimpleObjectProperty<>((int)ChronoUnit.DAYS.between(LocalDate.now(), borrow.getReturnDate()));
 		}
-	}
 
+		public List<String> getSearchParams() {
+			return Arrays.asList
+			(
+				title.getValue(),
+				author.getValue(),
+				category.getValue(),
+				borrowDate.getValue().toString()
+			);
+		}
+	}
 
 
 	@FXML
@@ -73,8 +83,6 @@ public class UViewBorrowedBooksController implements Initializable {
 	@FXML
 	private TableColumn<DisplayRecord, LocalDate> borrowDate;
 	@FXML
-	private TableColumn<DisplayRecord, LocalDate> returnDate;
-	@FXML
 	private TableColumn<DisplayRecord, Integer> daysReminded;
 
 	private ObservableList<DisplayRecord> borrowsList = FXCollections.observableArrayList();
@@ -86,7 +94,6 @@ public class UViewBorrowedBooksController implements Initializable {
 		category.setCellValueFactory(cellData -> cellData.getValue().category);
 		rating.setCellValueFactory(cellData -> cellData.getValue().rating);
 		borrowDate.setCellValueFactory(cellData -> cellData.getValue().borrowDate);
-		returnDate.setCellValueFactory(cellData -> cellData.getValue().returnDate);
 		daysReminded.setCellValueFactory(cellData -> cellData.getValue().daysReminded);
 
 		tableBooks.setItems(borrowsList);
@@ -118,9 +125,8 @@ public class UViewBorrowedBooksController implements Initializable {
 		}
 	}
 
-	private void refreshList(String text) {
-
+	private void refreshList(String key) {
+		refreshList();
+		borrowsList.setAll(Filter.metch(borrowsList, key));
 	}
-
-
 }

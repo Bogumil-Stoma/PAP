@@ -1,9 +1,14 @@
 package org.openjfx.database;
 
+import java.util.List;
+import java.util.Arrays;
+
+import org.openjfx.helpers.Searchable;
+
 /*
  * Rating is between 1 and 5 inclusive. This is the number of stars basically.
  */
-public class Book {
+public class Book implements Searchable {
 	private int id;
 	private String title;
 	private String author;
@@ -27,4 +32,8 @@ public class Book {
 	public String getCategory() { return category; }
 	public int getRating() { return rating; }
 	public int getAmount() { return amount; }
+
+	public List<String> getSearchParams() {
+		return Arrays.asList ( title, author, category );
+	}
 }

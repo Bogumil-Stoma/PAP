@@ -55,7 +55,6 @@
             <TableColumn fx:id="category" maxWidth="378.39996337890625" minWidth="0.0" prefWidth="165.60003662109375" style="-fx-alignment: CENTER;" text="Category" />
             <TableColumn fx:id="rating" maxWidth="443.9998779296875" minWidth="4.0" prefWidth="112.0" style="-fx-alignment: CENTER;" text="Rating" />
             <TableColumn fx:id="borrowDate" maxWidth="525.5999938964844" minWidth="0.0" prefWidth="138.0" sortable="false" style="-fx-alignment: CENTER;" text="Borrowed date" />
-            <TableColumn fx:id="returnDate" maxWidth="525.5999938964844" minWidth="0.0" prefWidth="152.0" sortable="false" style="-fx-alignment: CENTER;" text="Return date" />
             <TableColumn fx:id="daysReminded" maxWidth="525.5999938964844" minWidth="0.0" prefWidth="113.0" sortable="false" style="-fx-alignment: CENTER;" text="Remained days" />
          </columns>
          <VBox.margin>
