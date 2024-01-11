@@ -16,12 +16,13 @@ public class GetTabs extends Request {
 			list.add(new TabData("Borrowed books", "AdminView_BorrowedBooks"));
 			list.add(new TabData("Wanted to be borrowed", "AdminView_WantedBooks"));
 			list.add(new TabData("Add book", "AdminView_AddBook"));
-			list.add(new TabData("Notifications", "AdminNotifications"));
+			list.add(new TabData("Notifications", "AdminView_Notifications"));
 		}
 		else {
 			list.add(new TabData("Borrowed books", "UserView_BorrowedBooks"));
 			list.add(new TabData("Available books", "UserView_AvailableBooks"));
 			list.add(new TabData("Wished books", "UserView_WishedBooks"));
+			list.add(new TabData("Notifications", "UserView_Notifications"));
 		}
 
 		return list;

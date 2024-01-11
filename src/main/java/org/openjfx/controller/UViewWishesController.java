@@ -11,7 +11,6 @@ import org.openjfx.requests.GetBook;
 import org.openjfx.requests.GetUserWishes;
 import org.openjfx.helpers.Filter;
 import org.openjfx.helpers.Searchable;
-import org.openjfx.helpers.Refreshable;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
