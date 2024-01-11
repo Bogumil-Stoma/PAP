@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import org.openjfx.database.Borrow;
+import org.openjfx.database.User;
 
 public class GetBorrows extends Request {
 	public static ArrayList<Borrow> fromResult(ResultSet result) {
@@ -21,13 +22,11 @@ public class GetBorrows extends Request {
 		return fromResult(result);
 	}
 
-	public static ArrayList<Borrow> request(String search) {
-		String query = "SELECT b.* FROM (BORROW b JOIN BOOK on b.book_id = book_id) " +
-					   "WHERE DIFFERENCE(title, '%s') > 2 " +
-					   "OR DIFFERENCE(author, '%s') > 2 " +
-					   "OR DIFFERENCE(category, '%s') = 4 " +
-					   "ORDER BY DIFFERENCE(title, '%s') + DIFFERENCE(author, '%s') + DIFFERENCE(category, '%s') DESC";
-		query = String.format(query, search, search, search, search, search, search);
+
+	public static ArrayList<Borrow> request(User user) {
+		String query = "SELECT * FROM BORROW " +
+					   "WHERE user_id = %d ";
+		query = String.format(query, user.getID());
 		ResultSet result = executeRequest(query);
 		return fromResult(result);
 	}

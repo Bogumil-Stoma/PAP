@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleObjectProperty;
 import org.openjfx.database.Borrow;
+import org.openjfx.helpers.Filter;
 import org.openjfx.requests.*;
 
 import javafx.collections.FXCollections;
@@ -37,7 +38,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	@FXML
 	private TableView<Borrow> tableBooks;
 
-	private ObservableList<Borrow> books = FXCollections.observableArrayList();
+	private ObservableList<Borrow> borrowList = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,27 +49,25 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		date.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getBorrowDate()));
 
 
-		tableBooks.setItems(books);
+		tableBooks.setItems( borrowList );
 		refreshList();
 
 		this.addButtonsToTableView();
 		Utils.RowStyler.styleRows(tableBooks, Borrow::isBorrowLate);
 	}
 
+
 	private void refreshList() {
-		books.clear();
+		borrowList.clear();
 		var bookArrayList = GetBorrows.request();
 		if (bookArrayList != null) {
-			books.addAll(bookArrayList);
+			borrowList.addAll(bookArrayList);
 		}
 	}
 
-	private void refreshList(String text) {
-		books.clear();
-		var bookArrayList = GetBorrows.request(text);
-		if (bookArrayList != null) {
-			books.addAll(bookArrayList);
-		}
+	private void refreshList(String key) {
+		refreshList();
+		borrowList.setAll( Filter.match( borrowList, key));
 	}
 
 	@FXML
@@ -95,7 +94,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	private void removeBook(Borrow borrow) {
 //		System.out.println("The BorrowedBook should be marked as returned (removed)");
 		ChangeBookAmount.request(borrow.getBookId(), 1);
-		var deleted = DelBorrow.request(borrow);
+		DelBorrow.request(borrow);
 		refreshList();
 
 		vbox.requestFocus(); // take away focus

@@ -1,6 +1,8 @@
 package org.openjfx.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.openjfx.requests.GetTabs;
 
@@ -14,6 +16,10 @@ public class UserViewMainController {
     @FXML
     private TabPane tabPane;
 
+	private Map<String, Tab> tabsByName = new HashMap<>();
+
+	public static UserViewMainController instance;
+
     public void initialize() {
 
 		// remove template tabs
@@ -23,19 +29,31 @@ public class UserViewMainController {
 		for (var tabData : GetTabs.request(SceneController.getCurrentUser())) {
 			try {
 				var tab = new Tab(tabData.TabName());
-//				System.out.println(String.format("'%s'\n'%s'\n", tabData.TabName(), tabData.ViewFileName()));
+				//System.out.println(String.format("'%s'\n'%s'\n", tabData.TabName(), tabData.ViewFileName()));
 				tab.setContent(SceneController.getParentFromFxml(tabData.ViewFileName()));
 				tab.setClosable(false);
 				tabPane.getTabs().add(tab);
+				tabsByName.put(tabData.TabName(), tab);
 			}
 			catch (IOException e) {
 				System.out.println("Could not load tab of " + tabData.TabName() + "\nerror:\n" + e);
 			}
 		}
+
+		instance = this;
     }
 
 	@FXML
-	void onLogOutClick(ActionEvent event) throws IOException {
+	public void onLogOutClick(ActionEvent event) throws IOException {
 		SceneController.signOut(event);
+	}
+
+	public void selectTab(String tabName) {
+		if (!tabsByName.containsKey(tabName)) {
+			System.out.println("Tab of name " + tabName + " does not exist");
+			return;
+		}
+		var selection = tabPane.getSelectionModel();
+		selection.select(tabsByName.get(tabName));
 	}
 }

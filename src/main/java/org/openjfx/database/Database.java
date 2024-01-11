@@ -189,6 +189,7 @@ public class Database {
 	 *  - int user_id
 	 *  - int book_id
 	 *  - int days
+	 *  - date wish_date
 	 *
 	 * BORROW:
 	 *  - int borrow_id
