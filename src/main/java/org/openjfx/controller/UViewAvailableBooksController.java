@@ -8,17 +8,18 @@ import org.openjfx.requests.AddWish;
 import org.openjfx.requests.GetBooks;
 import org.openjfx.helpers.Filter;
 
+
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-
 
 public class UViewAvailableBooksController implements Initializable {
 	@FXML
@@ -27,6 +28,8 @@ public class UViewAvailableBooksController implements Initializable {
 	private TextField txtSearch;
 	@FXML
 	private TextField txtDaysRequest;
+	@FXML
+	private Label labelErrors;
 	@FXML
 	private TableView<Book> tableBooks;
 	@FXML
@@ -56,7 +59,30 @@ public class UViewAvailableBooksController implements Initializable {
 
 		tableBooks.setItems(booksList);
 		refreshList();
+	}
 
+	@FXML
+	private void onRefreshClick(ActionEvent event) {
+		this.refreshList();
+	}
+
+	@FXML
+	private void onSearchClick(ActionEvent event) {
+		refreshList(txtSearch.getText().toLowerCase());
+		txtSearch.clear();
+		vbox.requestFocus(); // take away focus from txtSearch TextField
+	}
+
+	@FXML
+	private void onDaysRequestChanged() {
+		var newValue = txtDaysRequest.getText();
+		if (!newValue.matches("\\d*")) {
+			newValue = newValue.replaceAll("[^\\d]", "");
+            txtDaysRequest.setText(newValue);
+        }
+		if (!newValue.isEmpty()) {
+			labelErrors.setText("");
+		}
 	}
 
 	private void refreshList() {
@@ -69,23 +95,8 @@ public class UViewAvailableBooksController implements Initializable {
 
 	private void refreshList(String key) {
 		refreshList();
-		booksList.setAll(Filter.match(booksList, key));
-	}
-
-	@FXML
-	void onRefreshClick(ActionEvent event) {
-		this.refreshList();
-	}
-
-	@FXML
-	void onSearchClick(ActionEvent event) {
-		if (txtSearch.getText().isEmpty())
-			return;
-
-		refreshList(txtSearch.getText().toLowerCase());
-
-		txtSearch.clear();
-		vbox.requestFocus(); // take away focus from txtSearch TextField
+		if (!key.isEmpty())
+			booksList.setAll(Filter.match(booksList, key));
 	}
 
 	private void requestBook(Book book) {
@@ -96,6 +107,7 @@ public class UViewAvailableBooksController implements Initializable {
 			UserViewMainController.instance.selectTab("Wished books");
 		}
 		catch (NumberFormatException e) {
+			labelErrors.setText("Days is not set");
 			System.out.println("Days in not an number!");
 		}
 

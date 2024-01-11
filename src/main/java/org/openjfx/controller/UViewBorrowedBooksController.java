@@ -95,11 +95,7 @@ public class UViewBorrowedBooksController implements Initializable {
 
 	@FXML
 	void onSearchClick(ActionEvent event) {
-		if (txtSearch.getText().isEmpty())
-			return;
-
 		refreshList(txtSearch.getText().toLowerCase());
-
 		txtSearch.clear();
 		vbox.requestFocus(); // take away focus from txtSearch TextField
 	}
@@ -120,6 +116,7 @@ public class UViewBorrowedBooksController implements Initializable {
 
 	private void refreshList(String key) {
 		refreshList();
-		borrowsList.setAll(Filter.match(borrowsList, key));
+		if (!key.isEmpty())
+			borrowsList.setAll(Filter.match(borrowsList, key));
 	}
 }

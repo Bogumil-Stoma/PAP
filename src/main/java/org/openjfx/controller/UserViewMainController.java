@@ -28,15 +28,15 @@ public class UserViewMainController {
 		// add new tabs
 		for (var tabData : GetTabs.request(SceneController.getCurrentUser())) {
 			try {
-				var tab = new Tab(tabData.TabName());
+				var tab = new Tab(tabData.getTabName());
 				//System.out.println(String.format("'%s'\n'%s'\n", tabData.TabName(), tabData.ViewFileName()));
-				tab.setContent(SceneController.getParentFromFxml(tabData.ViewFileName()));
+				tab.setContent(SceneController.getParentFromFxml(tabData.getViewFileName()));
 				tab.setClosable(false);
 				tabPane.getTabs().add(tab);
-				tabsByName.put(tabData.TabName(), tab);
+				tabsByName.put(tabData.getTabName(), tab);
 			}
 			catch (IOException e) {
-				System.out.println("Could not load tab of " + tabData.TabName() + "\nerror:\n" + e);
+				System.out.println("Could not load tab of " + tabData.getTabName() + "\nerror:\n" + e);
 			}
 		}
 
