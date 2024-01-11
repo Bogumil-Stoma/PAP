@@ -36,6 +36,10 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	@FXML
 	private TableColumn<Borrow, Void> returnBook;
 	@FXML
+	private TableColumn<Borrow, Void> collectBook;
+	@FXML
+	private TableColumn<Borrow, Boolean> acknowledge;
+	@FXML
 	private TableView<Borrow> tableBooks;
 
 	private ObservableList<Borrow> borrowList = FXCollections.observableArrayList();
@@ -47,6 +51,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		bookName.setCellValueFactory(cellData -> new SimpleObjectProperty<>(GetBook.request(cellData.getValue().getBookId()).getTitle()));
 		days.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDays()));
 		date.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getBorrowDate()));
+		acknowledge.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAcknowledged()));
 
 
 		tableBooks.setItems( borrowList );
@@ -54,6 +59,8 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 		this.addButtonsToTableView();
 		Utils.RowStyler.styleRows(tableBooks, Borrow::isBorrowLate);
+
+		Utils.sortTableView(tableBooks, date, TableColumn.SortType.ASCENDING);
 	}
 
 
@@ -73,6 +80,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	@FXML
 	void onRefreshClick(ActionEvent event) {
 		this.refreshList();
+		Utils.sortTableView(tableBooks, date, TableColumn.SortType.ASCENDING);
 	}
 
 	@FXML
@@ -80,7 +88,6 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		if (txtSearch.getText().isEmpty())
 			return;
 
-//		System.out.println("I want to see borrowed books which titles contain the word: " + txtSearch.getText().toLowerCase());
 		refreshList(txtSearch.getText().toLowerCase());
 
 		txtSearch.clear();
@@ -89,14 +96,18 @@ public class AdminViewBorrowedBooksController implements Initializable {
 
 	private void addButtonsToTableView() {
 		returnBook.setCellFactory(Utils.createButtonInsideTableColumn("Returned", book -> removeBook(book)));
+		collectBook.setCellFactory(Utils.createButtonInsideTableColumn("Collected", book -> markAsCollected(book)));
 	}
 
 	private void removeBook(Borrow borrow) {
-//		System.out.println("The BorrowedBook should be marked as returned (removed)");
 		ChangeBookAmount.request(borrow.getBookId(), 1);
 		DelBorrow.request(borrow);
 		refreshList();
 
 		vbox.requestFocus(); // take away focus
+	}
+
+	private void markAsCollected(Borrow book) {
+		System.out.println("This book: should have 'acknowledge' set to true, ye?");
 	}
 }

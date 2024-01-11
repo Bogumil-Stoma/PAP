@@ -53,8 +53,8 @@
             <TableColumn fx:id="title" maxWidth="290.39996945858" prefWidth="212.00007283687592" text="Title" />
             <TableColumn fx:id="author" maxWidth="283.99993896484375" prefWidth="156.79998779296875" text="Author" />
             <TableColumn fx:id="category" maxWidth="270.3999938964844" minWidth="0.0" prefWidth="84.800048828125" text="Category" />
-            <TableColumn fx:id="rating" maxWidth="230.39999389648438" minWidth="0.0" prefWidth="64.79998779296875" style="-fx-alignment: CENTER;" text="Rating" />
-            <TableColumn fx:id="amount" maxWidth="235.2000732421875" minWidth="0.0" prefWidth="63.1998291015625" style="-fx-alignment: CENTER;" text="Amount" />
+            <TableColumn fx:id="rating" maxWidth="230.39999389648438" minWidth="0.0" prefWidth="50.4000244140625" style="-fx-alignment: CENTER;" text="Rating" />
+            <TableColumn fx:id="amount" maxWidth="235.2000732421875" minWidth="0.0" prefWidth="79.19989013671875" style="-fx-alignment: CENTER;" text="Amount" />
             <TableColumn fx:id="removeRow" maxWidth="326.4000244140625" minWidth="0.0" prefWidth="66.39990234375" sortable="false" style="-fx-alignment: CENTER;" text="Action" />
             <TableColumn fx:id="amountAdd" maxWidth="326.4000244140625" minWidth="0.0" prefWidth="56.7999267578125" sortable="false" style="-fx-alignment: CENTER;" text="Amount" />
             <TableColumn fx:id="amountSubtract" maxWidth="326.4000244140625" minWidth="0.0" prefWidth="63.2000732421875" sortable="false" style="-fx-alignment: CENTER;" text="Amount" />

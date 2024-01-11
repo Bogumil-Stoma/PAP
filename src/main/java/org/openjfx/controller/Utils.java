@@ -57,5 +57,11 @@ public class Utils {
 		}
 	}
 
+	public static <T> void sortTableView(TableView<T> tableView, TableColumn<T, ?> column, TableColumn.SortType sortType) {
+		column.setSortType(sortType);
+		tableView.getSortOrder().clear();
+		tableView.getSortOrder().add(column);
+		tableView.sort();
+	}
 }
 
