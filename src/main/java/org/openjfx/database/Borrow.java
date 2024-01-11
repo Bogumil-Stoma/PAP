@@ -1,9 +1,15 @@
 package org.openjfx.database;
 
+import org.openjfx.helpers.Searchable;
+import org.openjfx.requests.GetBook;
+import org.openjfx.requests.GetUser;
+
 import java.time.LocalDate;
 import java.sql.Date;
+import java.util.Arrays;
+import java.util.List;
 
-public class Borrow {
+public class Borrow implements Searchable {
 	private int id;
 	private int userId;
 	private int bookId;
@@ -34,6 +40,12 @@ public class Borrow {
 
 	public Boolean isBorrowLate(){
 		return getReturnDate().isAfter( LocalDate.now() );
+	}
+
+	public List<String> getSearchParams() {
+		var book = GetBook.request(bookId);
+		var user = GetUser.request(userId);
+		return Arrays.asList ( book.getAuthor(), book.getCategory(), book.getTitle(), borrowDate.toString(), user.getLogin());
 	}
 
 }

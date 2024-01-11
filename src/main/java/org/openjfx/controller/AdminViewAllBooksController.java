@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleObjectProperty;
 import org.openjfx.database.Book;
+import org.openjfx.helpers.Filter;
 import org.openjfx.requests.ChangeBookAmount;
 import org.openjfx.requests.DelBook;
 import org.openjfx.requests.GetBooks;
@@ -68,12 +69,9 @@ public class AdminViewAllBooksController implements Initializable {
 		}
 	}
 
-	private void refreshList(String text) {
-		books.clear();
-		var bookArrayList = GetBooks.request(text);
-		if (bookArrayList != null) {
-			books.addAll(bookArrayList);
-		}
+	private void refreshList(String key) {
+		refreshList();
+		books.setAll( Filter.match(books, key));
 	}
 
 	@FXML

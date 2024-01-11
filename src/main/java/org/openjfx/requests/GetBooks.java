@@ -23,16 +23,6 @@ public class GetBooks extends Request {
 		return fromResult(result);
 	}
 
-	public static ArrayList<Book> request(String search) {
-		String query = "SELECT * FROM BOOK " +
-					   "WHERE DIFFERENCE(title, '%s') > 2 " +
-					   "OR DIFFERENCE(author, '%s') > 2 " +
-					   "OR DIFFERENCE(category, '%s') = 4 " +
-					   "ORDER BY DIFFERENCE(title, '%s') + DIFFERENCE(author, '%s') + DIFFERENCE(category, '%s') DESC";
-		query = String.format(query, search, search, search, search, search, search);
-		ResultSet result = executeRequest(query);
-		return fromResult(result);
-	}
 
 	public static ArrayList<Book> fromWishes(ArrayList<Wish> wishes) {
 		ArrayList<Book> books = new ArrayList<Book>();
