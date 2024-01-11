@@ -59,7 +59,6 @@ public class UViewAvailableBooksController implements Initializable {
 
 		tableBooks.setItems(booksList);
 		refreshList();
-
 	}
 
 	@FXML
@@ -69,18 +68,13 @@ public class UViewAvailableBooksController implements Initializable {
 
 	@FXML
 	private void onSearchClick(ActionEvent event) {
-		if (txtSearch.getText().isEmpty())
-			return;
-
 		refreshList(txtSearch.getText().toLowerCase());
-
 		txtSearch.clear();
 		vbox.requestFocus(); // take away focus from txtSearch TextField
 	}
 
 	@FXML
 	private void onDaysRequestChanged() {
-		System.out.println("Wis");
 		var newValue = txtDaysRequest.getText();
 		if (!newValue.matches("\\d*")) {
 			newValue = newValue.replaceAll("[^\\d]", "");
@@ -101,7 +95,8 @@ public class UViewAvailableBooksController implements Initializable {
 
 	private void refreshList(String key) {
 		refreshList();
-		booksList.setAll(Filter.match(booksList, key));
+		if (!key.isEmpty())
+			booksList.setAll(Filter.match(booksList, key));
 	}
 
 	private void requestBook(Book book) {

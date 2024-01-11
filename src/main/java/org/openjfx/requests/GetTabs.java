@@ -38,7 +38,7 @@ public class GetTabs extends Request {
 			this.viewFileName = viewFileName;
 		}
 
-		public String TabName() { return tabName; }
-		public String ViewFileName() { return viewFileName; }
+		public String getTabName() { return tabName; }
+		public String getViewFileName() { return viewFileName; }
  	}
 }

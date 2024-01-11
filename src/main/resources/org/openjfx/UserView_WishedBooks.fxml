@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbox" prefHeight="503.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.UViewWishesController">
+<VBox fx:id="vbox" prefHeight="503.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.UViewWishesController">
    <children>
       <HBox prefHeight="51.0" prefWidth="810.0">
          <children>
@@ -42,25 +42,20 @@
                   </Button>
                </children>
             </VBox>
-            <TextField fx:id="txtDaysRequest" prefHeight="26.0" prefWidth="61.0" promptText="Days" styleClass="btn-radius">
-               <HBox.margin>
-                  <Insets left="25.0" top="25.0" />
-               </HBox.margin>
-            </TextField>
 
          </children>
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </HBox>
-      <Separator prefHeight="27.0" prefWidth="915.0" />
+      <Separator prefHeight="27.0" prefWidth="810.0" />
       <TableView fx:id="tableBooks" focusTraversable="false">
          <columns>
-            <TableColumn fx:id="title" maxWidth="290.39996945858" prefWidth="212.00007283687592" text="Title" />
-            <TableColumn fx:id="author" maxWidth="283.99993896484375" prefWidth="156.79998779296875" text="Author" />
-            <TableColumn fx:id="category" maxWidth="270.3999938964844" minWidth="0.0" prefWidth="118.0" text="Category" />
-            <TableColumn fx:id="rating" maxWidth="230.39999389648438" minWidth="0.0" prefWidth="65.0" style="-fx-alignment: CENTER;" text="Rating" />
-            <TableColumn fx:id="amount" maxWidth="235.2000732421875" minWidth="0.0" prefWidth="65.0" style="-fx-alignment: CENTER;" text="Amount" />
+            <TableColumn fx:id="title" maxWidth="338.0" prefWidth="265.0" text="Title" />
+            <TableColumn fx:id="author" maxWidth="283.99993896484375" prefWidth="150.0" text="Author" />
+            <TableColumn fx:id="category" maxWidth="270.3999938964844" minWidth="0.0" prefWidth="90.0" text="Category" />
+            <TableColumn fx:id="rating" maxWidth="230.39999389648438" minWidth="0.0" prefWidth="90.0" style="-fx-alignment: CENTER;" text="Rating" />
+			<TableColumn fx:id="forDays" maxWidth="230.39999389648438" minWidth="0.0" prefWidth="90.0" style="-fx-alignment: CENTER;" text="For days" />
             <TableColumn fx:id="request" maxWidth="326.4000244140625" minWidth="0.0" prefWidth="65.0" sortable="false" style="-fx-alignment: CENTER;" text="Request" />
          </columns>
          <VBox.margin>
