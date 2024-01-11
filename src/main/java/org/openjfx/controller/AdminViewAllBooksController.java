@@ -59,6 +59,8 @@ public class AdminViewAllBooksController implements Initializable {
 		refreshList();
 
 		this.addButtonsToTableView();
+
+		Utils.sortTableView(tableBooks, amount, TableColumn.SortType.DESCENDING);
 	}
 
 	private void refreshList() {
@@ -77,6 +79,7 @@ public class AdminViewAllBooksController implements Initializable {
 	@FXML
 	void onRefreshClick(ActionEvent event) {
 		this.refreshList();
+		Utils.sortTableView(tableBooks, amount, TableColumn.SortType.DESCENDING);
 	}
 
 	@FXML
