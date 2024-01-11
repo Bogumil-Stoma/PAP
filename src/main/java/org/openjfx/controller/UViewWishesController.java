@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.openjfx.database.Book;
-import org.openjfx.requests.AddWish;
 import org.openjfx.requests.GetBooks;
 import org.openjfx.helpers.Filter;
 
@@ -20,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 
-public class UViewAvailableBooksController implements Initializable {
+public class UViewWishesController implements Initializable {
 	@FXML
 	private VBox vbox;
 	@FXML
@@ -52,7 +51,7 @@ public class UViewAvailableBooksController implements Initializable {
 		rating.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getRating()));
 		amount.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAmount()));
 
-		request.setCellFactory(Utils.createButtonInsideTableColumn("request", book -> requestBook(book)));
+		request.setCellFactory(Utils.createButtonInsideTableColumn("request", book -> delateWish(book)));
 
 		tableBooks.setItems(booksList);
 		refreshList();
@@ -88,16 +87,8 @@ public class UViewAvailableBooksController implements Initializable {
 		vbox.requestFocus(); // take away focus from txtSearch TextField
 	}
 
-	private void requestBook(Book book) {
-		try {
-			var days = Integer.parseInt(txtDaysRequest.getText());
-			AddWish.request(SceneController.getCurrentUser(), book, days);
-			System.out.println("Wishe made of " + book.getId() + " on " + days);
-			UserViewMainController.instance.selectTab("Wished books");
-		}
-		catch (NumberFormatException e) {
-			System.out.println("Days in not an number!");
-		}
+	private void delateWish(Book book) {
+		System.out.println("dupa");
 
 		vbox.requestFocus(); // take away focus
 	}

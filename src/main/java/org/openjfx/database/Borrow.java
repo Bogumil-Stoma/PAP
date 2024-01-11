@@ -2,7 +2,6 @@ package org.openjfx.database;
 
 import java.time.LocalDate;
 import java.sql.Date;
-import java.util.Calendar;
 
 public class Borrow {
 	private int id;

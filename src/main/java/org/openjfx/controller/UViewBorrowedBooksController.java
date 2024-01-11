@@ -11,7 +11,7 @@ import org.openjfx.database.Borrow;
 import org.openjfx.helpers.Filter;
 import org.openjfx.helpers.Searchable;
 import org.openjfx.requests.GetBook;
-import org.openjfx.requests.GetBorrows;
+import org.openjfx.requests.GetUserBorrows;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -112,7 +112,7 @@ public class UViewBorrowedBooksController implements Initializable {
 
 	private void refreshList() {
 		borrowsList.clear();
-		var borrows = GetBorrows.request(SceneController.getCurrentUser());
+		var borrows = GetUserBorrows.request(SceneController.getCurrentUser());
 		for (var borow : borrows) {
 			borrowsList.add(new DisplayRecord(borow));
 		}
@@ -120,6 +120,6 @@ public class UViewBorrowedBooksController implements Initializable {
 
 	private void refreshList(String key) {
 		refreshList();
-		borrowsList.setAll(Filter.metch(borrowsList, key));
+		borrowsList.setAll(Filter.match(borrowsList, key));
 	}
 }
