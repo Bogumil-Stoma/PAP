@@ -38,8 +38,8 @@ public class Borrow implements Searchable {
 	public LocalDate getReturnDate() { return borrowDate.plusDays(days); }
 	public Boolean getAcknowledged() { return acknowledged; }
 
-	public Boolean isBorrowLate(){
-		return getReturnDate().isAfter( LocalDate.now() );
+	public int isBorrowLate(){
+		return getReturnDate().isAfter( LocalDate.now() ) ? 1 : 0;
 	}
 
 	public List<String> getSearchParams() {

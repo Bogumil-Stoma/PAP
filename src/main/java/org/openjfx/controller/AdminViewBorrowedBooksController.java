@@ -58,7 +58,7 @@ public class AdminViewBorrowedBooksController implements Initializable {
 		refreshList();
 
 		this.addButtonsToTableView();
-		Utils.RowStyler.styleRows(tableBooks, Borrow::isBorrowLate);
+		Utils.RowStyler.styleRows(tableBooks,  Borrow::isBorrowLate);
 
 		Utils.sortTableView(tableBooks, date, TableColumn.SortType.ASCENDING);
 	}
@@ -108,6 +108,8 @@ public class AdminViewBorrowedBooksController implements Initializable {
 	}
 
 	private void markAsCollected(Borrow book) {
-		System.out.println("This book: should have 'acknowledge' set to true, ye?");
+		if (!book.getAcknowledged()) {
+			AcknowledgeBorrow.request( book );
+		}
 	}
 }
