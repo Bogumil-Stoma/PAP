@@ -33,7 +33,7 @@ public class UViewBorrowedBooksController implements Initializable {
 		public ObjectProperty<String> title;
 		public ObjectProperty<String> author;
 		public ObjectProperty<String> category;
-		public ObjectProperty<Integer> rating;
+		public ObjectProperty<Boolean> wasPickedUp;
 		public ObjectProperty<LocalDate> borrowDate;
 		public ObjectProperty<Integer> daysReminded;
 
@@ -42,7 +42,7 @@ public class UViewBorrowedBooksController implements Initializable {
 			title = new SimpleObjectProperty<>(book.getTitle());
 			author = new SimpleObjectProperty<>(book.getAuthor());
 			category = new SimpleObjectProperty<>(book.getCategory());
-			rating = new SimpleObjectProperty<>(book.getRating());
+			wasPickedUp = new SimpleObjectProperty<>(borrow.getAcknowledged());
 			borrowDate = new SimpleObjectProperty<>(borrow.getBorrowDate());
 			daysReminded = new SimpleObjectProperty<>((int)ChronoUnit.DAYS.between(LocalDate.now(), borrow.getReturnDate()));
 		}
@@ -81,7 +81,7 @@ public class UViewBorrowedBooksController implements Initializable {
 	@FXML
 	private TableColumn<DisplayRecord, String> category;
 	@FXML
-	private TableColumn<DisplayRecord, Integer> rating;
+	private TableColumn<DisplayRecord, Boolean> wasPickedUp;
 	@FXML
 	private TableColumn<DisplayRecord, LocalDate> borrowDate;
 	@FXML
@@ -94,7 +94,7 @@ public class UViewBorrowedBooksController implements Initializable {
 		title.setCellValueFactory(cellData -> cellData.getValue().title);
 		author.setCellValueFactory(cellData -> cellData.getValue().author);
 		category.setCellValueFactory(cellData -> cellData.getValue().category);
-		rating.setCellValueFactory(cellData -> cellData.getValue().rating);
+		wasPickedUp.setCellValueFactory(cellData -> cellData.getValue().wasPickedUp);
 		borrowDate.setCellValueFactory(cellData -> cellData.getValue().borrowDate);
 		daysReminded.setCellValueFactory(cellData -> cellData.getValue().daysReminded);
 

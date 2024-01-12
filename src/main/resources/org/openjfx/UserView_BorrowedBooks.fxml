@@ -52,8 +52,8 @@
          <columns>
             <TableColumn fx:id="title" maxWidth="331.19995725154877" prefWidth="266.0" style="-fx-alignment: CENTER;" text="Title" />
             <TableColumn fx:id="author" maxWidth="356.8000030517578" prefWidth="124.0" style="-fx-alignment: CENTER;" text="Author" />
-            <TableColumn fx:id="category" maxWidth="378.39996337890625" minWidth="0.0" prefWidth="123.0" style="-fx-alignment: CENTER;" text="Category" />
-            <TableColumn fx:id="rating" maxWidth="443.9998779296875" minWidth="4.0" prefWidth="59.0" style="-fx-alignment: CENTER;" text="Rating" />
+            <TableColumn fx:id="category" maxWidth="378.39996337890625" minWidth="0.0" prefWidth="88.0" style="-fx-alignment: CENTER;" text="Category" />
+            <TableColumn fx:id="wasPickedUp" maxWidth="443.9998779296875" minWidth="4.0" prefWidth="94.0" style="-fx-alignment: CENTER;" text="Was picked up" />
             <TableColumn fx:id="borrowDate" maxWidth="525.5999938964844" minWidth="0.0" prefWidth="102.0" sortable="false" style="-fx-alignment: CENTER;" text="Borrowed date" />
             <TableColumn fx:id="daysReminded" maxWidth="525.5999938964844" minWidth="0.0" prefWidth="115.0" sortable="false" style="-fx-alignment: CENTER;" text="Remained days" />
          </columns>
