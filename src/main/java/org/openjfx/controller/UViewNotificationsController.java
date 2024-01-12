@@ -1,9 +1,13 @@
 package org.openjfx.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import org.openjfx.database.Book;
 import org.openjfx.requests.GetAmount;
+import org.openjfx.requests.GetBook;
 import org.openjfx.requests.GetBorrows;
 import org.openjfx.requests.GetWishes;
 
@@ -34,64 +38,62 @@ public class UViewNotificationsController implements Initializable {
 	}
 
 	void refreshNotifications(){
-		var wishes = GetWishes.request();
-		int how_many_wishes = wishes.size();
-
-		var borrowed = GetBorrows.request();
-		int how_many_borrowed = borrowed.size();
-
-		var all_amount = GetAmount.request();
-
-
-		setNotification1(how_many_wishes);
-		setNotification2(how_many_borrowed);
-		setNotification3(all_amount);
-
-		// to disable set this two values to false
-		notification1.setVisible(false);
-		notification1.setManaged(false);
+		setNotification1();
+		setNotification2();
+		setNotification3();
 	}
-	void setNotification1(int how_many_wishes) {
-		switch (how_many_wishes) {
+	void setNotification1() {
+		ArrayList<Book> books = new ArrayList<Book>();
+		for (var element: GetBorrows.request(SceneController.getCurrentUser())){
+			if (!element.getAcknowledged() && element.getReturnDate().isAfter( LocalDate.now()) ){
+				books.add( GetBook.request(element.getBookId()));
+			}
+		}
+
+		notification1.setVisible( false );
+		if (books.size() == 1) {
+			notification1.setVisible( true );
+			notification1.setText( "Your wish/es has been accepted, collect " + books.get( 0 ).getTitle() );
+		} else {
+			notification1.setVisible( true );
+			StringBuilder text = new StringBuilder( "Your wish/es has been accepted, collect " );
+			for (var book : books) {
+				text.append( " " ).append( book.getAuthor() ).append( "," );
+			}
+			text.replace( -1, -2, "" );
+			notification1.setText( text.toString() );
+		}
+	}
+
+	void setNotification2() {
+		ArrayList<Book> books = new ArrayList<Book>();
+		for (var element: GetBorrows.request(SceneController.getCurrentUser())){
+			if (!element.getReturnDate().isAfter( LocalDate.now() )){
+				books.add( GetBook.request(element.getBookId()));
+			}
+		}
+		notification2.setVisible( true );
+		switch (books.size()) {
 			case 0:
-				notification1.setText("No books are waiting for borrow acceptation");
+				notification2.setVisible( false );
 				break;
 			case 1:
-				notification1.setText( how_many_wishes + " book is waiting for borrow acceptation");
+				notification2.setText("You are late with book " + books.get(0).getTitle());
 				break;
 			default:
-				notification1.setText( how_many_wishes + " books are waiting for borrow acceptation");
+				StringBuilder text = new StringBuilder( "You are late with books" );
+				for (var book: books){
+					text.append( " " ).append( book.getAuthor() ).append( "," );
+				}
+				text.replace(-1,-2,"");
+				notification2.setText(text.toString());
 				break;
 		}
 	}
 
-	void setNotification2(int how_many_borrowed) {
-		switch (how_many_borrowed) {
-			case 0:
-				notification2.setText("No books are waiting currently borrowed");
-				break;
-			case 1:
-				notification2.setText( how_many_borrowed + " book is currently borrowed");
-				break;
-			default:
-				notification2.setText( how_many_borrowed + " books are currently borrowed");
-				break;
+	void setNotification3() {
+			notification3.setVisible( false );
 		}
 	}
-
-	void setNotification3(int all_amount) {
-		switch (all_amount) {
-			case 0:
-				notification3.setText("No books are available for borrow");
-				break;
-			case 1:
-				notification3.setText(all_amount + " book is available");
-				break;
-			default:
-				notification3.setText(all_amount + " books are available");
-				break;
-		}
-	}
-}
 
 

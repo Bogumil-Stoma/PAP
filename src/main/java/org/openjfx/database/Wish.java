@@ -23,7 +23,7 @@ public class Wish {
 
 	public int getDays() { return days; }
 
-	public boolean isWishDoable() {
-		return GetBook.fromWish(this).getAmount()>0;
+	public int isWishDoable() {
+		return GetBook.fromWish(this).getAmount()>0 ? 1 : 0;
 	}
 }

@@ -4,8 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.openjfx.database.Book;
-import org.openjfx.requests.AddWish;
-import org.openjfx.requests.GetBooks;
+import org.openjfx.requests.*;
 import org.openjfx.helpers.Filter;
 
 
@@ -102,6 +101,15 @@ public class UViewAvailableBooksController implements Initializable {
 	private void requestBook(Book book) {
 		try {
 			var days = Integer.parseInt(txtDaysRequest.getText());
+			if (days > 60){
+				System.out.println("max days is 60");
+				return;
+			}
+			if (GetWishes.request(SceneController.getCurrentUser()).size()  +
+					GetBorrows.request(SceneController.getCurrentUser()).size()>4){
+				System.out.println("max borrowed books at once is 5!");
+				return;
+			}
 			AddWish.request(SceneController.getCurrentUser(), book, days);
 			System.out.println("Wishe made of " + book.getId() + " on " + days);
 			UserViewMainController.instance.selectTab("Wished books");

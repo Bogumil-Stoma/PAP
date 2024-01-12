@@ -32,7 +32,7 @@ public class Utils {
 		}
 
 		interface ConditionChecker<T> {
-			boolean checkCondition(T item);
+			int checkCondition(T item);
 		}
 
 		class StyledRow<U> extends TableRow<U> {
@@ -47,11 +47,17 @@ public class Utils {
 				if (item == null || empty) {
 					setStyle("");
 				} else {
-					if (conditionChecker.checkCondition(item)) {
-						setStyle("-fx-background-color: lightgreen;");
-					} else {
-						setStyle("-fx-background-color: lightcoral;");
+					switch (conditionChecker.checkCondition( item )) {
+						case 0:
+							setStyle("-fx-background-color: lightcoral;");
+							break;
+						case 1:
+							setStyle("-fx-background-color: lightgreen;");
+							break;
+						case 2:
+							setStyle("-fx-background-color: yellow;");
 					}
+
 				}
 			}
 		}

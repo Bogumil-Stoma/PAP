@@ -6,9 +6,7 @@ import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import org.openjfx.database.Book;
 import org.openjfx.helpers.Filter;
-import org.openjfx.requests.ChangeBookAmount;
-import org.openjfx.requests.DelBook;
-import org.openjfx.requests.GetBooks;
+import org.openjfx.requests.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -100,6 +98,10 @@ public class AdminViewAllBooksController implements Initializable {
 	}
 
 	private void removeBook(Book book) {
+		if (GetWish.request( book ) != null) {
+			System.out.println( "cant remove, book is wished" );
+			return;
+		}
 		try {
 			var deleted = DelBook.request(book);
 			if (deleted)

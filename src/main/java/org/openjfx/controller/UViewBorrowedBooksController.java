@@ -56,6 +56,15 @@ public class UViewBorrowedBooksController implements Initializable {
 				borrowDate.getValue().toString()
 			);
 		}
+
+		public int rowStyleHelper(){
+			if(daysReminded.get() <= 0)
+				return 0;
+			 else if (daysReminded.get() <= 5)
+				return 2;
+			else
+				return 1;
+		}
 	}
 
 
@@ -90,6 +99,8 @@ public class UViewBorrowedBooksController implements Initializable {
 		daysReminded.setCellValueFactory(cellData -> cellData.getValue().daysReminded);
 
 		tableBooks.setItems(borrowsList);
+
+		Utils.RowStyler.styleRows(tableBooks, DisplayRecord::rowStyleHelper);
 		refreshList();
 	}
 
