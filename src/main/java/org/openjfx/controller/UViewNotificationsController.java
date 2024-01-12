@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import org.openjfx.database.Book;
-import org.openjfx.requests.GetAmount;
 import org.openjfx.requests.GetBook;
 import org.openjfx.requests.GetBorrows;
-import org.openjfx.requests.GetWishes;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,15 +48,15 @@ public class UViewNotificationsController implements Initializable {
 			}
 		}
 
-		notification1.setVisible( false );
+		notification1.setVisible( books.size() != 0 );
+		notification1.setManaged( books.size() != 0 );
+
 		if (books.size() == 1) {
-			notification1.setVisible( true );
-			notification1.setText( "Your wish/es has been accepted, collect " + books.get( 0 ).getTitle() );
+			notification1.setText( "Your wish/es has been accepted, collect \"" + books.get( 0 ).getTitle() + "\"");
 		} else {
-			notification1.setVisible( true );
-			StringBuilder text = new StringBuilder( "Your wish/es has been accepted, collect " );
+			StringBuilder text = new StringBuilder( "Your wish/es has been accepted, collect:" );
 			for (var book : books) {
-				text.append( " " ).append( book.getAuthor() ).append( "," );
+				text.append( "\n\"" ).append( book.getAuthor() ).append( "\"," );
 			}
 			text.replace( -1, -2, "" );
 			notification1.setText( text.toString() );
@@ -72,27 +70,26 @@ public class UViewNotificationsController implements Initializable {
 				books.add( GetBook.request(element.getBookId()));
 			}
 		}
-		notification2.setVisible( true );
-		switch (books.size()) {
-			case 0:
-				notification2.setVisible( false );
-				break;
-			case 1:
-				notification2.setText("You are late with book " + books.get(0).getTitle());
-				break;
-			default:
-				StringBuilder text = new StringBuilder( "You are late with books" );
-				for (var book: books){
-					text.append( " " ).append( book.getAuthor() ).append( "," );
-				}
-				text.replace(-1,-2,"");
-				notification2.setText(text.toString());
-				break;
+		notification2.setVisible( books.size() != 0 );
+		notification2.setManaged( books.size() != 0 );
+
+		if (books.size() == 1) {
+			notification2.setText("You are late with book \"" + books.get(0).getTitle() + "\"");
+		}
+		else {
+			StringBuilder text = new StringBuilder( "You are late with books" );
+			for (var book: books){
+				text.append( "\n\"" ).append( book.getAuthor() ).append( "\"" );
+				if (book != books.get(books.size()-1))
+					text.append( "," );
+			}
+			notification2.setText(text.toString());
 		}
 	}
 
 	void setNotification3() {
 			notification3.setVisible( false );
+			notification3.setManaged( false );
 		}
 	}
 
