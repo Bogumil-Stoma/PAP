@@ -30,4 +30,8 @@ Aplikacja desktopowa opcjonalnie z bazą danych
 
 - etap 1: do 14. listopada - WYKONANY
 - etap 2: do 5. grudnia - prototyp aplikacji - WYKONANY
-- etap 3: do 10. stycznia - działająca aplikacja - ...
+- etap 3: do 10. stycznia - działająca aplikacja - WYKONANY
+- etap 4: 20. stycznia:
+  Poprawa pozycji przycisku Logout
+  Dodatkowa notyfikacja o spóźnionych książkach do oddania
+  Edytowanie ratingu książek z poziomu aplikacji
