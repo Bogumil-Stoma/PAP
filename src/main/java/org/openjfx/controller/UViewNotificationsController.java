@@ -53,12 +53,12 @@ public class UViewNotificationsController implements Initializable {
 
 		if (books.size() == 1) {
 			notification1.setText( "Your wish/es has been accepted, collect \"" + books.get( 0 ).getTitle() + "\"");
-		} else {
+		} else if (books.size() > 1) {
 			StringBuilder text = new StringBuilder( "Your wish/es has been accepted, collect:" );
 			for (var book : books) {
 				text.append( "\n\"" ).append( book.getAuthor() ).append( "\"," );
 			}
-			text.replace( -1, -2, "" );
+			text.delete(text.length() - 1, text.length());
 			notification1.setText( text.toString() );
 		}
 	}
