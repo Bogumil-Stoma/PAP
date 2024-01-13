@@ -56,7 +56,7 @@ public class UViewNotificationsController implements Initializable {
 		} else if (books.size() > 1) {
 			StringBuilder text = new StringBuilder( "Your wish/es has been accepted, collect:" );
 			for (var book : books) {
-				text.append( "\n\"" ).append( book.getAuthor() ).append( "\"," );
+				text.append( "\n\"" ).append( book.getTitle() ).append( "\"," );
 			}
 			text.delete(text.length() - 1, text.length());
 			notification1.setText( text.toString() );
@@ -79,7 +79,7 @@ public class UViewNotificationsController implements Initializable {
 		else {
 			StringBuilder text = new StringBuilder( "You are late with books" );
 			for (var book: books){
-				text.append( "\n\"" ).append( book.getAuthor() ).append( "\"" );
+				text.append( "\n\"" ).append( book.getTitle() ).append( "\"" );
 				if (book != books.get(books.size()-1))
 					text.append( "," );
 			}

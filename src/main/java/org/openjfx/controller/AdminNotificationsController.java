@@ -22,6 +22,8 @@ public class AdminNotificationsController implements Initializable {
 
 	@FXML
 	private Label notification3;
+	@FXML
+	private Label notification4;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,6 +48,8 @@ public class AdminNotificationsController implements Initializable {
 		setNotification1(how_many_wishes);
 		setNotification2(how_many_borrowed);
 		setNotification3(all_amount);
+
+		notification4.setText("How many borrowed books are late for return?");
 	}
 	void setNotification1(int how_many_wishes) {
 		switch (how_many_wishes) {

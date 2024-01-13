@@ -9,3 +9,12 @@
 .btn-radius {
     -fx-background-radius: 20px;
 }
+
+.btn-logout {
+    -fx-background-color: #6b2313;
+    -fx-background-radius: 5px;
+}
+
+.btn-logout:hover {
+    -fx-background-color: #7a392b;
+}
