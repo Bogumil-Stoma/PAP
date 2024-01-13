@@ -39,7 +39,7 @@
                   <Font size="16.0" />
                </font></TextField>
             <ChoiceBox fx:id="ratingChoiceBox" layoutX="118.0" layoutY="154.0" prefHeight="25.0" prefWidth="191.0" />
-            <Button fx:id="btnSubmit" defaultButton="true" layoutX="313.0" layoutY="278.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="48.0" prefWidth="134.0" text="Add" textFill="WHITE">
+            <Button fx:id="btnSubmit" defaultButton="true" layoutX="278.0" layoutY="278.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="48.0" prefWidth="134.0" text="Add" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -69,7 +69,7 @@
             </Label>
             <Label fx:id="labelErrors" alignment="CENTER" layoutX="193.0" layoutY="342.0" prefHeight="17.0" prefWidth="508.0" textFill="RED" />
             <Label fx:id="labelInfo" alignment="CENTER" layoutX="193.0" layoutY="359.0" prefHeight="17.0" prefWidth="508.0" />
-            <Button fx:id="btnClear" focusTraversable="false" layoutX="473.0" layoutY="276.0" mnemonicParsing="false" onAction="#onClearClick" prefHeight="52.0" prefWidth="134.0" styleClass="btn-radius" text="Clear" textFill="#555555">
+            <Button fx:id="btnClear" focusTraversable="false" layoutX="437.0" layoutY="276.0" mnemonicParsing="false" onAction="#onClearClick" prefHeight="52.0" prefWidth="134.0" styleClass="btn-radius" text="Clear" textFill="#555555">
                <font>
                   <Font size="18.0" />
                </font>
