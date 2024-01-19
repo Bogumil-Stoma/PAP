@@ -156,5 +156,6 @@ public class AdminViewAllBooksController implements Initializable {
 
 	private void changeRating(Book book, int newRating) {
 		System.out.println(book.getTitle() + " this book should have " + newRating + " rating.");
+		ModifyBookRating.request( newRating, book.getId() );
 	}
 }

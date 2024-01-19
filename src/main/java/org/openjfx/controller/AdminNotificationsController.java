@@ -49,7 +49,7 @@ public class AdminNotificationsController implements Initializable {
 		setNotification2(how_many_borrowed);
 		setNotification3(all_amount);
 
-		notification4.setText("How many borrowed books are late for return?");
+		setNotification4();
 	}
 	void setNotification1(int how_many_wishes) {
 		switch (how_many_wishes) {
@@ -89,6 +89,27 @@ public class AdminNotificationsController implements Initializable {
 				break;
 			default:
 				notification3.setText(all_amount + " books are available");
+				break;
+		}
+	}
+
+	void setNotification4(){
+		notification4.setVisible( true );
+		int all_amount = 0;
+		for (var book: GetBorrows.request()){
+			if (book.isBorrowLate() == 0){
+				all_amount++;
+			}
+		}
+		switch (all_amount) {
+			case 0:
+				notification4.setVisible( false );
+				break;
+			case 1:
+				notification4.setText(all_amount + " book is late");
+				break;
+			default:
+				notification4.setText(all_amount + " books are late");
 				break;
 		}
 	}
